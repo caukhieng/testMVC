@@ -1,8 +1,8 @@
 <?php
-
+    include_once('../libs/database.php');
 class roomModel
 {
-    private $db = new Database();
+    private $db;
     public $id;
     public $idMotel;
     public $description;
@@ -11,7 +11,7 @@ class roomModel
     public $roomNumber;
     public function __construct()
     {
-        //empty
+        $this->db = new Database();
     }
     // public function __construct($id, $idMotel, $description, $price, $area, $roomNumber)
     // {
@@ -22,12 +22,18 @@ class roomModel
     //     $this->area = $area;
     //     $this->roomNumber = $roomNumber;
     // }
-    public function getAllRooms()
-    {
-        $sql = "SELECT * FROM phongtro";
-        $query = $this->db->select($sql);
-        $result = $query->fetch_assoc();
-        return $result;
-    }
+    public function getAllRooms() {
+        $query = "SELECT * FROM phongtro";
+        $result = $this->db->select($query);
+        if (!$result) {
+          echo "Database Error: " . $this->db->error;
+          exit;
+        }
+        $rooms = array();
+        while ($row = $result->fetch_assoc()) {
+          $rooms[] = $row;
+        }
+        return $rooms;
+      }
 }
 ?>

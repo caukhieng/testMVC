@@ -5,17 +5,17 @@
   <meta name="description" content="Web long tìm nhà trọ">
   <meta name="author" content="Nhóm x">
   <meta name="keywords" content="HTML , CSS , SCSS , JavaScript , PHP" >
-  <link rel="stylesheet" href="./assets/boxicons-2.0.7/css/boxicons.min.css">
-  <link rel="stylesheet" href="./assets/css/styles1.css">
+  <link rel="stylesheet" href="../assets/boxicons-2.0.7/css/boxicons.min.css">
+  <link rel="stylesheet" href="../assets/css/styles1.css">
   <title>Trang chủ</title>
 </head>
 <body>
   <?php
-    include './components/mommom/Header.php';
+    include '../components/mommom/Header.php';
   ?>
     <div class="main">
       <?php
-      include './components/mommom/slider.php';
+      include '../components/mommom/slider.php';
       // include './components/mommom/Navigation.php';
       ?>
       <div class="container">
@@ -25,32 +25,10 @@
             Sản phẩm nhà trọ mới nhất
           </h3>
         <?php 
-        include './controllers/roomController.php';
+          include_once(__DIR__ .'/../controllers/roomController.php');
+          $roomController = new roomController();
+          $roomController();
         ?>
-          <div class="product__container">
-            <div class="product__item">
-              <div class="product__item__img">
-                <a href="../page/roomDetailsGuest.php?idPhongTro=<?php echo $row['MaPhongTro'];?>&idNhaTro=<?php echo $row['MaNhaTro'];?>">
-                  <img src="https://cdn.luatvietnam.vn/uploaded/Images/Original/2022/09/05/mau-hop-dong-thue-tro-2022-1_0509150415.jpg" alt="">
-                </a>
-              </div>
-              <h4 class="product__item__title">
-              <a href="#">
-                  <?php echo $row['SoPhong']; ?>
-                </a>
-              </h4>
-              <p class="product__item__price">
-                <span>VNĐ</span>  <?php echo $row['GiaThue']; ?>
-              </p>
-              <p style="padding-top: 1rem; margin-bottom: 1rem">
-                  Diện tích <span><?php echo $row['DienTich']; ?></span>
-              </p>
-              <a href="#" class="product__item__action">
-                <i class='bx bx-category' ></i>
-                Xem chi tiết
-              </a>
-            </div>
-          </div>
         </div>
           <div class="product">
             <h3 class="heading">
@@ -97,16 +75,16 @@
               </div>
               <div class="brands__container">
                 <div class="brands__item">
-                  <img src="./assets/images/aurus.png" alt="">
+                  <img src="../assets/images/aurus.png" alt="">
                 </div>
                 <div class="brands__item">
-                  <img src="./assets/images/msi.png" alt="">
+                  <img src="../assets/images/msi.png" alt="">
                 </div>
                 <div class="brands__item">
-                  <img src="./assets/images/logo.png" alt="">
+                  <img src="../assets/images/logo.png" alt="">
                 </div>
                 <div class="brands__item">
-                  <img src="./assets/images/rog.png" alt="">
+                  <img src="../assets/images/rog.png" alt="">
                 </div>
               </div>
             </div>
@@ -114,8 +92,8 @@
       </div>
     </div>
   <?php
-    include './components/mommom/Footer.php'
+    include '../components/mommom/Footer.php'
   ?>
 
-  <script type="text/javascript" src="./assets/scripts/app1.js"></script>
+  <script type="text/javascript" src="../assets/scripts/app1.js"></script>
 </body>

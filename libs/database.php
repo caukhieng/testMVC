@@ -1,6 +1,7 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
-include ($filepath.'/../config/config.php') ?>
+include ($filepath.'/../config/config.php') 
+?>
 
 <?php
   class Database{
@@ -32,6 +33,8 @@ include ($filepath.'/../config/config.php') ?>
       if($result->num_rows > 0){
         return $result;
       }else{
+        echo "Database Error: " . $this->link->error . "<br>";
+        echo "SQL Query: " . $query . "<br>";
         return false;
       }
     }
@@ -41,6 +44,8 @@ include ($filepath.'/../config/config.php') ?>
       if($insert_row){
         return $insert_row;
       }else{
+        echo "Database Error: " . $this->link->error . "<br>";
+        echo "SQL Query: " . $query . "<br>";
         return false;
       }
     }
@@ -50,6 +55,8 @@ include ($filepath.'/../config/config.php') ?>
       if($update_row){
         return $update_row;
       }else{
+        echo "Database Error: " . $this->link->error . "<br>";
+        echo "SQL Query: " . $query . "<br>";
         return false;
       }
     }
@@ -59,6 +66,8 @@ include ($filepath.'/../config/config.php') ?>
       if($delete_row){
         return $delete_row;
       }else{
+        echo "Database Error: " . $this->link->error . "<br>";
+        echo "SQL Query: " . $query . "<br>";
         return false;
       }
     }

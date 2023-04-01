@@ -28,7 +28,7 @@
         Đăng xuất
       </a>
     <?php else: ?>
-      <a href="../page/verifyAccount.php">
+      <a href="">
         <i class="bx bxs-user"></i>
         Xác nhận tài khoản
       </a>
@@ -40,7 +40,7 @@
           <i class="bx bxs-user"></i> <?php echo $_SESSION['userName']; ?>
         </a>
       <?php else: ?>
-        <a href="./views/login.php">
+        <a href="/../phpmvc/views/login.php">
           <i class="bx bxs-user"></i> Đăng nhập
         </a>
       <?php endif; ?>
