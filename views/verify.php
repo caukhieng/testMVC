@@ -24,8 +24,14 @@
       <?php include '../components/mommom/slider.php';?>
       <?php 
         include('../controllers/verifyController.php');
-        $verify = new verifyController();
-        $verify(); // call the __invoke() method to render the verifyView
+        if(isset($_GET['forget']) && $_GET['forget'] == 'yes'){
+          $verify = new verifyPassword();
+          $verify(); // call the __invoke() method to render the verifyView
+        }
+        else {
+          $verify = new verifyController();
+          $verify(); // call the __invoke() method to render the verifyView
+        }
       ?>
       </div>
     </div>

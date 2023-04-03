@@ -3,8 +3,7 @@
     class accountView
     {
         public function render()
-        {
-            include('../components/mommom/slider.php');?>
+        {?>
         </div>
         <div class="main">
           <div class="container">
@@ -38,7 +37,7 @@
                 </div>
                 <button type="submit" name="submit" class="form-submit">Đăng nhập</button>
                 <a href="register.php" class="register">Đăng ký tài khoản tại đây!</a><br>
-                Quên mật khẩu ? <a href="forgetPassword1.php" class="register">Nhấn vào đây!</a>
+                Quên mật khẩu ? <a href="forgetPassword.php" class="register">Nhấn vào đây!</a>
             </form>
 <?php
     }

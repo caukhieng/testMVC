@@ -11,6 +11,7 @@ include ($filepath.'/../config/config.php')
     public $dbname = DB_NAME;
     public $APP_MAIL = APP_MAIL;
     public $APP_PASS = APP_PASS;
+    public $SECRET = SECRET;
 
     public $link;
     public $error;

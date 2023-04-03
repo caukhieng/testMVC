@@ -38,8 +38,8 @@
             $email = $_SESSION['user_mail'];
             if($otp == ''){
               $errorMessage = "OTP không được để trống";
-              echo "<script language='javascript'>alert('$errorMessage');</script>";
-              echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '$errorMessage';</script>";
+              // echo "<script language='javascript'>alert('$errorMessage');</script>";
+              echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '$errorMessage';</script>";
             } else if($otp == $checkotp) {
               $accountModel = new accountModel();
               $result = $accountModel->foundUser($email);
@@ -54,10 +54,35 @@
             }
             else {
               $errorMessage = "OTP sai!";
-              echo "<script language='javascript'>alert('$errorMessage');</script>";
-              echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '$errorMessage';</script>";
+              // echo "<script language='javascript'>alert('$errorMessage');</script>";
+              echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '$errorMessage';</script>";
             }
           }
         }
+    }
+    class verifyPassword
+    {
+      public function __invoke()
+      {
+        $verifyView = new verifyView();
+        $verifyView->render();
+        if(isset($_POST['submit'])){
+          $checkotp = $_SESSION['otp'];
+          $otp = $_POST['otp']; //get otp from keyboard
+          // $email = $_SESSION['user_mail'];
+          if($otp == ''){
+            $errorMessage = "OTP không được để trống";
+            // echo "<script language='javascript'>alert('$errorMessage');</script>";
+            echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '$errorMessage';</script>";
+          } else if($otp == $checkotp) {
+            echo '<meta http-equiv="refresh" content="0;url=updatepassword.php">';
+          }
+          else {
+            $errorMessage = "OTP sai!";
+            // echo "<script language='javascript'>alert('$errorMessage');</script>";
+            echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '$errorMessage';</script>";
+          }
+        }
+      }
     }
 ?>

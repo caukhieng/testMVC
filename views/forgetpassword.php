@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/user.css">
 
-  <title>Đăng nhập</title>
+  <title>Quên mật khẩu</title>
 
 </head>
 <body>
@@ -24,9 +24,9 @@
     include('../components/mommom/slider.php');
   ?>
   
-    <?php include('../controllers/accountController.php');
-      $accountController = new userController();
-      $user = $accountController();
+    <?php include('../controllers/forgetpasswordController.php');
+      $user = new userController();
+      $user();
     ?>
       </div>
     </div>

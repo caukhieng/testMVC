@@ -14,25 +14,23 @@
   <link rel="stylesheet" href="../assets/boxicons-2.0.7/css/boxicons.min.css">
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/user.css">
-
-  <title>Đăng nhập</title>
-
+  <title>Đặt lại mật khẩu</title>
+  
 </head>
 <body>
   <?php 
     include '../components/mommom/Header.php';
-    include('../components/mommom/slider.php');
   ?>
-  
-    <?php include('../controllers/accountController.php');
-      $accountController = new userController();
-      $user = $accountController();
-    ?>
-      </div>
+    <div class="main">
+      <?php 
+      include '../components/mommom/slider.php';
+      include '../controllers/updatepasswordController.php';
+      $user = new userController();
+      $user();
+      ?>
     </div>
   <?php 
     include '../components/mommom/Footer.php'
   ?>
-
   <script type="text/javascript" src="../assets/scripts/app1.js"></script>
 </body>

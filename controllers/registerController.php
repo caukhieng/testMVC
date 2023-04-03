@@ -81,7 +81,7 @@
                         echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
                     }
                     else{
-                        $addUser = $accountModel->register($email, md5($password), $role);
+                        $addUser = $accountModel->register($email, $password, $role);
                         if($addUser){
                             $_SESSION['user_mail'] = $email;
                             echo '<meta http-equiv="refresh" content="0;url=verify.php">'; //going to verify page
