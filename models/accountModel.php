@@ -1,118 +1,128 @@
 <?php 
+    include_once('../libs/database.php');
 
 class accountModel
 {
+    private $db;
     public $id;
     public $email;
     public $hashPass;
     public $role;
     public $verify;
-    public function __construct($id, $email, $hashPass, $role, $verify)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->email = $email;
-        $this->hashPass = $hashPass;
-        $this->role = $role;
-        $this->verify = $verify;
+        $this->db = new Database();
     }
-
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
+    public function foundUser($email){
+        $query = "SELECT * FROM account where Email = '$email' LIMIT 1";
+        $result = $this->db->select($query);
+        if($result && $row = mysqli_fetch_assoc($result)){
+            $_SESSION['user_id'] = $row['MaAccount'];
+            $_SESSION['user_role'] = $row['role'];
+            return true;
+        }
+        return false;
     }
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
+    public function login($email, $password)
     {
-        $this->id = $id;
-
-        return $this;
+        $query = "SELECT * FROM account WHERE Email = '$email' LIMIT 1";
+        $result = $this->db->select($query);
+        if($result) {
+            $user = $result->fetch_assoc();
+            if(md5($password) === $user['hashPass']) {
+                $_SESSION['user_id'] = $user['MaAccount'];
+                $_SESSION['user_email'] = $user['Email'];
+                $_SESSION['user_role'] = $user['role'];
+                return true;
+            }
+            else{
+                // incorrect password
+                return false;
+            }
+        }
+        else{
+            // user not found
+            return false;
+        }
     }
-
-    /**
-     * Get the value of email
-     */ 
-    public function getEmail()
+    public function register($email, $password, $role)
     {
-        return $this->email;
+        $query = "INSERT INTO account (Email, hashPass, role, verify) VALUES ('$email','$password','$role', 0)";
+        $result = $this->db->insert($query);
+        if($result){
+            // OTP mailer
+            $otp = rand();
+            $_SESSION['otp'] = $otp;
+            $name = "BKL";  // Name of your website or yours
+            $to = $email;  // mail of reciever
+            $subject = "VERIFY ACCOUNT";
+            $body = "Your OTP: $otp";
+            //$body = file_get_contents('forgotpass.php');
+            $from = $this->db->APP_MAIL;  // your mail
+            $password = $this->db->APP_PASS;  // your mail password
+
+            // Ignore from here
+
+            require_once "PHPMailer/PHPMailer.php";
+            require_once "PHPMailer/SMTP.php";
+            require_once "PHPMailer/Exception.php";
+            $mail = new PHPMailer\PHPMailer\PHPMailer();
+            // To Here
+
+            //SMTP Settings
+            $mail->isSMTP();
+            // $mail->SMTPDebug = 3;  Keep It commented this is used for debugging
+            $mail->Host = "smtp.gmail.com"; // smtp address of your email
+            $mail->SMTPAuth = true;
+            $mail->Username = $from;
+            $mail->Password = $password;
+            $mail->Port = 587;  // port
+            $mail->SMTPSecure = "tls";  // tls or ssl
+            $mail->smtpConnect([
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+                ]
+            ]);
+
+            //Email Settings
+            $mail->isHTML(true);
+            $mail->setFrom($from, $name);
+            $mail->addAddress($to); // enter email address whom you want to send
+            $mail->Subject = ("$subject");
+            $mail->Body = $body;
+            if ($mail->send()) {
+                //echo "Email is sent!";
+                return true;
+            } else {
+                 echo "Something is wrong: <br><br>" . $mail->ErrorInfo;
+                return false;
+            }
+        }
     }
-
-    /**
-     * Set the value of email
-     *
-     * @return  self
-     */ 
-    public function setEmail($email)
+    public function updateVerify($email, $id)
     {
-        $this->email = $email;
-
-        return $this;
+        $query = "UPDATE account SET verify = 1 WHERE Email = '$email' AND MaAccount = '$id'";
+        // $query = "SELECT * FROM account WHERE Email = '$email'";
+        $result = $this->db->update($query);
+        if($result) return true;
+        return false;
     }
-
-    /**
-     * Get the value of hashPass
-     */ 
-    public function getHashPass()
-    {
-        return $this->hashPass;
-    }
-
-    /**
-     * Set the value of hashPass
-     *
-     * @return  self
-     */ 
-    public function setHashPass($hashPass)
-    {
-        $this->hashPass = $hashPass;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of role
-     */ 
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * Set the value of role
-     *
-     * @return  self
-     */ 
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of verify
-     */ 
-    public function getVerify()
-    {
-        return $this->verify;
-    }
-
-    /**
-     * Set the value of verify
-     *
-     * @return  self
-     */ 
-    public function setVerify($verify)
-    {
-        $this->verify = $verify;
-
-        return $this;
+    public function registerName($id, $name, $citizenID){
+        if($_SESSION['user_role'] == 0){
+            $query = "INSERT INTO chutro (MaAccount, Ten, CMND) VALUES ('$id','$name','$citizenID')";
+            $result = $this->db->insert($query);
+            if($result){
+                return true;
+            }
+        } else {
+            $query = "INSERT INTO khachtro (MaAccount, Ten, CMND) VALUES ('$id','$name','$citizenID')";
+            $result = $this->db->insert($query);
+            if($result){
+                return true;
+            }
+        }
+        return false;
     }
 }

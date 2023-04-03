@@ -10,7 +10,7 @@
     <i class='bx bx-menu-alt-left' ></i>
   </div>
   <h4 class="header__logo">
-  <a href="<?php echo isset($_SESSION['role']) && $_SESSION['role'] == 0 ? 'homepage.php' : 'index.php'; ?>">
+  <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? 'homepage.php' : 'index.php'; ?>">
     L<span>ONG</span> N<span>HONG</span>
   </a>
   </h4>
@@ -22,7 +22,7 @@
   </div>
   <div class="header__action">
     <button class="btn btn--cart header__action__btn">
-        <?php if(isset($_SESSION['userName'])): ?>
+        <?php if(isset($_SESSION['user_name'])): ?>
       <a href="?login=logout">
         <i class="bx bxs-user"></i>
         Đăng xuất
@@ -35,9 +35,9 @@
     <?php endif; ?>
     </button>
     <button class="btn btn--primary header__action__btn">
-      <?php if (isset($_SESSION['userName'])): ?>
+      <?php if (isset($_SESSION['user_name'])): ?>
         <a href="user_info.php">
-          <i class="bx bxs-user"></i> <?php echo $_SESSION['userName']; ?>
+          <i class="bx bxs-user"></i> <?php echo $_SESSION['user_name']; ?>
         </a>
       <?php else: ?>
         <a href="/../phpmvc/views/login.php">

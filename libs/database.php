@@ -9,6 +9,8 @@ include ($filepath.'/../config/config.php')
     public $user = DB_USER;
     public $pass = DB_PASS;
     public $dbname = DB_NAME;
+    public $APP_MAIL = APP_MAIL;
+    public $APP_PASS = APP_PASS;
 
     public $link;
     public $error;
@@ -25,7 +27,6 @@ include ($filepath.'/../config/config.php')
         return false;
       }
     }
-
 
     public function select($query){
       $result = $this->link->query($query) or die($this->link->error.__LINE__);

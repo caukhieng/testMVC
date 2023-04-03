@@ -1,7 +1,4 @@
-<?php 
-  header("Cache-Control: no-cache,must-revalidate");
-  header("Pragma: no-cache");
-  header("Cache-Control: max-age=2592000");
+<?php
   session_start();
 ?>
 <head>
@@ -14,23 +11,22 @@
   <link rel="stylesheet" href="../assets/boxicons-2.0.7/css/boxicons.min.css">
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/user.css">
-
-  <title>Đăng nhập</title>
-
+  <title>Đăng ký</title>
 </head>
 <body>
   <?php 
     include '../components/mommom/Header.php';
   ?>
-    <?php include('../controllers/accountController.php');
-      $accountController = new userController();
-      $user = $accountController();
-    ?>
-      </div>
+    <div class="main">
+      <?php 
+      include '../components/mommom/slider.php';
+      ?>
+    <?php include('../controllers/registernameController.php');
+      $register = new registernameController();
+      $register();?>
     </div>
   <?php 
     include '../components/mommom/Footer.php'
   ?>
-
   <script type="text/javascript" src="../assets/scripts/app1.js"></script>
 </body>

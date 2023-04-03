@@ -14,15 +14,17 @@
   <link rel="stylesheet" href="../assets/boxicons-2.0.7/css/boxicons.min.css">
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/user.css">
-
-  <title>Đăng nhập</title>
-
+  <title>Đăng Ký</title>
 </head>
 <body>
   <?php 
     include '../components/mommom/Header.php';
   ?>
-    <?php include('../controllers/accountController.php');
+    <div class="main">
+      <?php 
+      include '../components/mommom/slider.php';
+      ?>
+      <?php include('../controllers/registerController.php');
       $accountController = new userController();
       $user = $accountController();
     ?>
@@ -31,6 +33,5 @@
   <?php 
     include '../components/mommom/Footer.php'
   ?>
-
   <script type="text/javascript" src="../assets/scripts/app1.js"></script>
 </body>
