@@ -48,7 +48,7 @@ class accountModel
     }
     public function register($email, $password, $role)
     {
-        $hash = password_hash($password . $this->db->SECRET, PASSWORD_DEFAULT);
+        $hash = password_hash($password . $this->db->SECRET, PASSWORD_ARGON2I);
         $query = "INSERT INTO account (Email, hashPass, role, verify) VALUES ('$email','$hash','$role', 0)";
         $result = $this->db->insert($query);
         if($result){
@@ -186,7 +186,7 @@ class accountModel
     }
     public function updatePassword($email, $password)
     {
-        $hashed_password = password_hash($password . $this->db->SECRET, PASSWORD_DEFAULT);
+        $hashed_password = password_hash($password . $this->db->SECRET, PASSWORD_ARGON2I);
         $query = "UPDATE account SET hashPass = '$hashed_password' WHERE email = '$email'";
         $result = $this->db->update($query);
         if($result)
