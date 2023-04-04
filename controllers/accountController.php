@@ -61,6 +61,7 @@ class userController
                     $db = new Database();
                     $user = $db->select($query)->fetch_assoc();
                     $_SESSION['user_name'] = $user['Ten'];
+                    $_SESSION['user_idNum'] = $user['MaChuTro'];
                     echo '<meta http-equiv="refresh" content="0;url=homepage.php">';
                 }
                 else if($_SESSION['user_role'] == 1){
@@ -68,6 +69,7 @@ class userController
                     $db = new Database();
                     $user = $db->select($query)->fetch_assoc();
                     $_SESSION['user_name'] = $user['Ten'];
+                    $_SESSION['user_idNum'] = $user['MaKhachTro'];
                     echo '<meta http-equiv="refresh" content="0;url=index.php">';
 
                 }

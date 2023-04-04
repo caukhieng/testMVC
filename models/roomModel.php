@@ -13,16 +13,8 @@ class roomModel
     {
         $this->db = new Database();
     }
-    // public function __construct($id, $idMotel, $description, $price, $area, $roomNumber)
-    // {
-    //     $this->id = $id;
-    //     $this->idMotel = $idMotel;
-    //     $this->description = $description;
-    //     $this->price = $price;
-    //     $this->area = $area;
-    //     $this->roomNumber = $roomNumber;
-    // }
-    public function getAllRooms() {
+    public function getAllRooms() 
+    {
         $query = "SELECT * FROM phongtro";
         $result = $this->db->select($query);
         if (!$result) {
@@ -34,6 +26,14 @@ class roomModel
           $rooms[] = $row;
         }
         return $rooms;
-      }
+    }
+    public function addRoom($idMotel, $description, $price, $area, $roomNumber)
+    {
+      $query = "INSERT INTO phongtro (MaNhaTro, MoTaPhongTro, GiaThue, DienTich, SoPhong)
+                VALUES($idMotel, '$description', '$price', '$area', '$roomNumber')";
+      $result = $this->db->insert($query);
+      if($result) return true;
+      else return false;
+    }
 }
 ?>

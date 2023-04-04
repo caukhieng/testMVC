@@ -1,6 +1,6 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
-include ($filepath.'/../config/config.php') 
+include ($filepath.'/../config/config.php');
 ?>
 
 <?php
@@ -72,6 +72,23 @@ include ($filepath.'/../config/config.php')
         echo "SQL Query: " . $query . "<br>";
         return false;
       }
+    }
+    public function generateRandomString($length) {
+      // $lowercase = "abcdefghijklmnopqrstuvwxyz";
+      // $uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      $numbers = "0123456789";
+      // $special = "!@#$%^&*()_+";
+      // $str = $lowercase . $uppercase . $numbers . $special;
+      $str = $numbers;
+      $randomString = '';
+      for ($i = 0; $i < $length; $i++) {
+          $randomString .= $str[rand(0, strlen($str) - 1)];
+      }
+      return $randomString;
+    }
+    public function prepare($query) {
+      $stmt = $this->link->prepare($query) or die($this->link->error.__LINE__);
+      return $stmt;
     }
   }
 ?>
