@@ -27,6 +27,15 @@ class roomModel
         }
         return $rooms;
     }
+    public function getRoom($id)
+    {
+      $query = "SELECT * FROM phongtro WHERE MaNhaTro = '$id'";
+      $result = $this->db->selectWithoutDebug($query);
+      if (!$result) {
+          return null;
+      }
+      else return $result;
+    }
     public function addRoom($idMotel, $description, $price, $area, $roomNumber)
     {
       $query = "INSERT INTO phongtro (MaNhaTro, MoTaPhongTro, GiaThue, DienTich, SoPhong)

@@ -8,12 +8,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Web tim nhà trọ">
+  <meta name="description" content="Web tìm nhà trọ">
   <meta name="author" content="Nhóm x">
   <meta name="keywords" content="HTML , CSS , SCSS , JavaScript , PHP" >
   <link rel="stylesheet" href="../assets/boxicons-2.0.7/css/boxicons.min.css">
   <link rel="stylesheet" href="../assets/css/styles.css">
-  <title>Chi tiết</title>
+  <link rel="stylesheet" href="../assets/css/user.css">
+  <title>Thêm phòng trọ</title>
 </head>
 <body>
   <?php 
@@ -21,20 +22,16 @@
   ?>
     <div class="main">
       <?php 
-        include '../components/mommom/slider.php';
+      include '../components/mommom/slider.php';
       ?>
-    <?php
-      include '../controllers/roomdetaisController.php';
-      $details = new detailsMotelController();
-      $details();
-      $room = new room();
+     <?php 
+      include '../controllers/createroomController.php';
+      $room = new CreateRoom();
       $room();
-    ?>
-      </div>
+     ?>
     </div>
-  <?php 
+  <?php
     include '../components/mommom/Footer.php'
   ?>
-
   <script type="text/javascript" src="../assets/scripts/app1.js"></script>
 </body>

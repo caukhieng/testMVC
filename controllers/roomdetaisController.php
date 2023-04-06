@@ -1,11 +1,13 @@
 <?php 
     include_once(__DIR__ . '/../models/motelModel.php');
+    include_once(__DIR__ . '/../models/roomModel.php');
+
     class detailsMotel
     {
         public function render($details)
         {
         ?>
-       <div class="container">
+      <div class="container">
         <h2 class="title__section">
           Chi tiết nhà trọ
         </h2>
@@ -23,7 +25,7 @@
                     <?php echo $row['DiaChi'] ?>
                   </h3>
                     <?php $id = $_GET['idNhaTro'];?>
-                    <a href="../page/createPlace.php?idNhaTro=<?php echo $id;?>">
+                    <a href="../views/createroom.php?idNhaTro=<?php echo $id;?>">
                       <button type="submit" name="submit" class="btn btn--add">
                       <i class='bx bx-shopping-bag' ></i>
                       Thêm phòng trọ của bạn
@@ -38,33 +40,48 @@
                 </p>
               </div>
               <?php }?>
-            <!-- <div class="product">
+            </div>
+        </div>
+      </div>
+<?php
+        }
+      }
+    class roomDetails{
+      public function render($room)
+      {?>
+      <div class="container">
+            <div class="product">
               <h3 class="heading">
                 <i class="bx bx-cart-alt"></i>
                 Phòng trọ của bạn
               </h3>
               <div class="product__container">
-                <div class="product__item">
-                  <div class="product__item__img">
-                    <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo $id;?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
-                      <img src="https://akkogear.com.vn/wp-content/uploads/2022/08/ban-phim-co-akko-3068b-plus-black-gold-03.jpg" alt="">
+                <?php
+                if(is_null($room)){
+                  echo 'Bạn chưa có nhà trọ';
+                }
+                else{
+                  foreach($room as $item){ ?>
+                    <div class="product__item">
+                      <div class="product__item__img">
+                        <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo 'a'; ?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                          <img src="https://akkogear.com.vn/wp-content/uploads/2022/08/ban-phim-co-akko-3068b-plus-black-gold-03.jpg" alt="">
+                        </a>
+                      </div>
+                      <h4 class="product__item__title">
+                        <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo 'a';?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                          <?php echo $item['SoPhong'];?>
+                        </a>
+                      </h4>
+                      <a href="categoryName" class="product__item__action">
+                        <i class='bx bx-category' ></i>
+                        Xem list sản phẩm
                     </a>
-                  </div>
-                  <h4 class="product__item__title">
-                    <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo $id;?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
-                      <?php echo $item['SoPhong'];?>
-                    </a>
-                  </h4>
-                  <a href="categoryName" class="product__item__action">
-                    <i class='bx bx-category' ></i>
-                    Xem list sản phẩm
-                </a> -->
+                </div>
+              <?php }} ?>
             </div>
-            </div>
-        </div>
-        </div>
 <?php
-        }
+      }
     }
 class detailsMotelController
 {
@@ -76,4 +93,15 @@ class detailsMotelController
         $view = new detailsMotel();
         $view->render($details);
     }
+}
+class room
+{
+  public function __invoke()
+  {
+    $id = $_GET['idNhaTro'];
+    $getRoom = new RoomModel();
+    $yes = $getRoom->getRoom($id);
+    $room = new roomDetails();
+    $room->render($yes);
+  }
 }
