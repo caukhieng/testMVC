@@ -83,11 +83,12 @@ include ($filepath.'/../config/config.php');
         return false;
       }
     }
+
     public function generateRandomString($length) {
       // $lowercase = "abcdefghijklmnopqrstuvwxyz";
       // $uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
       $numbers = "0123456789";
-      // $special = "!@#$%^&*()_+";
+      // $special = "!@#$%^&*()-_=+";
       // $str = $lowercase . $uppercase . $numbers . $special;
       $str = $numbers;
       $randomString = '';
@@ -96,6 +97,7 @@ include ($filepath.'/../config/config.php');
       }
       return $randomString;
     }
+
     public function prepare($query) {
       $stmt = $this->link->prepare($query) or die($this->link->error.__LINE__);
       return $stmt;
