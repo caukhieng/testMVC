@@ -28,11 +28,23 @@
                     <a href="../views/createroom.php?idNhaTro=<?php echo $id;?>">
                       <button type="submit" name="submit" class="btn btn--add">
                       <i class='bx bx-shopping-bag' ></i>
-                      Thêm phòng trọ của bạn
+                      Thêm phòng trọ
                       </button>
                     </a>
-                </div>
+                    <a href="../views/configuremotel.php?idNhaTro=<?php echo $id;?>">
+                      <button type="submit" name="submit" class="btn btn--add">
+                      <i class='bx bx-shopping-bag' ></i>
+                      Chỉnh sửa nhà trọ
+                      </button>
+                    </a>
+                    <!-- <a href="" id="delete-link">
+                      <button type="button" class="btn btn--add" onclick="confirmDelete()">
+                          <i class='bx bx-shopping-bag'></i>
+                          Xóa nhà trọ
+                      </button>
+                    </a> -->
               </div>
+            </div>
               <div class="description">
                 <h4 class="heading">Mô tả</h4>
                 <p class="desc">
@@ -43,43 +55,52 @@
             </div>
         </div>
       </div>
+      <!-- <script>
+        function confirmDelete(id) {
+            if (confirm("Bạn có muốn xóa?")) {
+                window.location.href = "phpmvc/controllers/deletemotelController.php?idNhaTro=" + id;
+            }
+        }
+      </script> -->
+
 <?php
         }
       }
-    class roomDetails{
+    class roomDetails
+    {
       public function render($room)
       {?>
-      <div class="container">
-            <div class="product">
-              <h3 class="heading">
-                <i class="bx bx-cart-alt"></i>
-                Phòng trọ của bạn
-              </h3>
-              <div class="product__container">
-                <?php
-                if(is_null($room)){
-                  echo 'Bạn chưa có nhà trọ';
-                }
-                else{
-                  foreach($room as $item){ ?>
-                    <div class="product__item">
-                      <div class="product__item__img">
-                        <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo 'a'; ?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
-                          <img src="https://akkogear.com.vn/wp-content/uploads/2022/08/ban-phim-co-akko-3068b-plus-black-gold-03.jpg" alt="">
-                        </a>
-                      </div>
-                      <h4 class="product__item__title">
-                        <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo 'a';?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
-                          <?php echo $item['SoPhong'];?>
-                        </a>
-                      </h4>
-                      <a href="categoryName" class="product__item__action">
-                        <i class='bx bx-category' ></i>
-                        Xem list sản phẩm
-                    </a>
-                </div>
-              <?php }} ?>
-            </div>
+        <div class="container">
+          <div class="product">
+            <h3 class="heading">
+              <i class="bx bx-cart-alt"></i>
+              Phòng trọ của bạn
+            </h3>
+            <div class="product__container">
+              <?php
+              if(is_null($room)){
+                echo 'Bạn chưa có nhà trọ';
+              }
+              else{
+                foreach($room as $item){ ?>
+                  <div class="product__item">
+                    <div class="product__item__img">
+                      <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo 'a'; ?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                        <img src="https://akkogear.com.vn/wp-content/uploads/2022/08/ban-phim-co-akko-3068b-plus-black-gold-03.jpg" alt="">
+                      </a>
+                    </div>
+                    <h4 class="product__item__title">
+                      <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo 'a';?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                        <?php echo $item['SoPhong'];?>
+                      </a>
+                    </h4>
+                    <a href="categoryName" class="product__item__action">
+                      <i class='bx bx-category' ></i>
+                      Xem list sản phẩm
+                  </a>
+              </div>
+            <?php }} ?>
+          </div>
 <?php
       }
     }

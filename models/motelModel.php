@@ -1,12 +1,14 @@
 <?php
     include_once('../libs/database.php');
+    include_once('../models/roomModel.php');
+
 class motelModel
 {
     private $db;
-    private $idMotel;
-    private $addressMotel;
-    private $description;
-    private $idOwner;
+    public $idMotel;
+    public $addressMotel;
+    public $description;
+    public $idOwner;
     public function __construct()
     {
         $this->db = new Database();
@@ -17,7 +19,7 @@ class motelModel
         if (!$result) {
             echo "Database Error: " . $this->db->error;
             exit;
-          }
+        }
           $motels = array();
           while ($row = $result->fetch_assoc()) {
             $motels[] = $row;
@@ -29,7 +31,7 @@ class motelModel
         $query = "INSERT INTO nhatro (DiaChi, MoTaNhaTro, MaChuTro) VALUES ('$addressMotel', '$description', $idOwner)";
         $result = $this->db->insert($query);
         if($result) return true;
-        else return false;
+        return false;
     }
     public function getDetails($idMotel)
     {
@@ -44,6 +46,26 @@ class motelModel
             $motels[] = $row;
           }
           return $motels;
+    }
+    public function updateDetails($idMotel, $addressMotel, $description)
+    {
+        $query = "UPDATE `nhatro` SET `DiaChi`='$addressMotel',`MoTaNhaTro`='$description' WHERE `MaNhaTro`='$idMotel'";
+        $result = $this->db->update($query);
+        if($result) return $result;
+        return false;
+    }
+    public function delete($idMotel)
+    {
+        $roomModel = new RoomModel();
+        $roomModel->getRoom($idMotel);
+        if(!$roomModel)
+        {
+            $query = "DELETE FROM nhatro where MaNhaTro = $idMotel";
+            $result = $this->db->delete($query);
+            if(!$result) return false;
+            return true;
+        }
+        return false;
     }
 }
 ?>
