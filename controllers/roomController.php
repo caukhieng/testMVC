@@ -25,7 +25,7 @@
               <p style="padding-top: 1rem; margin-bottom: 1rem">
                   Diện tích <span><?php echo $row['DienTich']; ?></span>
               </p>
-              <a href="#" class="product__item__action">
+              <a href="../views/indetails.php?idPhongTro=<?php echo $row['MaPhongTro'];?>&idNhaTro=<?php echo $row['MaNhaTro'];?>" class="product__item__action">
                 <i class='bx bx-category' ></i>
                 Xem chi tiết
               </a>

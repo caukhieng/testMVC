@@ -28,23 +28,20 @@ class accountModel
     {
         $query = "SELECT * FROM account WHERE Email = '$email' LIMIT 1";
         $result = $this->db->select($query);
-        if($result) {
-            $user = $result->fetch_assoc();
-            if(password_verify($password.$this->db->SECRET, $user['hashPass'])) {
-                $_SESSION['user_id'] = $user['MaAccount'];
-                $_SESSION['user_email'] = $user['Email'];
-                $_SESSION['user_role'] = $user['role'];
-                return true;
-            }
-            else{
-                // incorrect password
-                return false;
-            }
-        }
-        else{
-            // user not found
+        if(!$result)
+        {
             return false;
         }
+        $user = $result->fetch_assoc();
+
+        if(!password_verify($password.$this->db->SECRET, $user['hashPass']))
+        {
+            return false; //password not incorrect
+        }
+        $_SESSION['user_id'] = $user['MaAccount'];
+        $_SESSION['user_email'] = $user['Email'];
+        $_SESSION['user_role'] = $user['role'];
+        return true;
     }
     public function register($email, $password, $role)
     {

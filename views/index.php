@@ -1,4 +1,7 @@
-<?php 
+<?php
+  header("Cache-Control: no-cache,must-revalidate");
+  header("Pragma: no-cache");
+  header("Cache-Control: max-age=2592000");
   session_start();
 ?>
 <head>
@@ -19,7 +22,7 @@
     <div class="main">
       <?php
       include '../components/mommom/slider.php';
-      // include './components/mommom/Navigation.php';
+      // include '../components/mommom/Navigation.php';
       ?>
       <div class="container">
         <div class="product">
@@ -97,6 +100,6 @@
   <?php
     include '../components/mommom/Footer.php'
   ?>
-
+  <button onclick="scrollToTop()" id="scroll-to-top">↑</button>
   <script type="text/javascript" src="../assets/scripts/app1.js"></script>
 </body>
