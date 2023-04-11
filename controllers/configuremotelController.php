@@ -10,7 +10,7 @@
        <div class="container">
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
-            <h3 class="heading">Chỉnh sửa phòng trọ</h3>
+            <h3 class="heading">Chỉnh sửa nhà trọ</h3>
             <p class="desc">Hãy nhập thông tin bên dưới <br> L<span>ONG</span> N<span>HONG</span> ❤️</p>
 
             <div class="spacer"></div>
@@ -23,7 +23,8 @@
 
             <div class="form-group">
               <label for="password" class="form-label">Mô tả nhà trọ</label>
-              <input style="resize:none;" id="password" name="description" placeholder="VD: Sạch, có nước nóng" class="form-control" value="<?php echo $row['MoTaNhaTro']; ?>" required autofocus>
+              <!-- <input style="resize:none;" id="password" name="description" placeholder="VD: Sạch, có nước nóng" class="form-control" value="" required autofocus> -->
+              <textarea style="resize:none;" id="password" name="description" placeholder="VD: Sạch, có nước nóng" class="form-control" required autofocus><?php echo $row['MoTaNhaTro']; ?></textarea>
               <span class="form-message"></span>
             </div>
             <button type="submit" name="submit" class="form-submit">Chỉnh sửa</button>

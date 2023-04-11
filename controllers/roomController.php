@@ -5,12 +5,12 @@
         public function render($rooms)
         {?>
             <div class="product__container">
-            <?php 
+            <?php
                 foreach ($rooms as $row) {
             ?>
             <div class="product__item">
               <div class="product__item__img">
-                <a href="../page/roomDetailsGuest.php?idPhongTro=<?php echo $row['MaPhongTro'];?>&idNhaTro=<?php echo $row['MaNhaTro'];?>">
+                <a href="../views/indetails.php?idPhongTro=<?php echo $row['MaPhongTro'];?>&idNhaTro=<?php echo $row['MaNhaTro'];?>">
                   <img src="https://cdn.luatvietnam.vn/uploaded/Images/Original/2022/09/05/mau-hop-dong-thue-tro-2022-1_0509150415.jpg" alt="">
                 </a>
               </div>

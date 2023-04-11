@@ -34,7 +34,16 @@ class roomModel
       if (!$result) {
           return null;
       }
-      else return $result;
+      return $result;
+    }
+    public function getRoomDebug($id)
+    {
+      $query = "SELECT * FROM phongtro WHERE MaPhongTro = '$id'";
+      $result = $this->db->select($query);
+      if (!$result) {
+          return null;
+      }
+      return $result;
     }
     public function addRoom($idMotel, $description, $price, $area, $roomNumber)
     {
@@ -43,6 +52,15 @@ class roomModel
       $result = $this->db->insert($query);
       if($result) return true;
       else return false;
+    }
+    public function updateRoom($id ,$description, $price, $area, $roomNumber)
+    {
+      $query = "UPDATE phongtro SET
+      MoTaPhongtro = '$description', GiaThue = '$price', DienTich = '$area`', SoPhong = '$roomNumber'
+      WHERE MaPhongTro = $id";
+      $result = $this->db->update($query);
+      if(!$result) return false;
+      return true;
     }
 }
 ?>

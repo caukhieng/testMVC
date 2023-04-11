@@ -48,7 +48,7 @@
               <div class="description">
                 <h4 class="heading">Mô tả</h4>
                 <p class="desc">
-                  <?php echo $row['MoTaNhaTro'];?>
+                  <?php echo nl2br($row['MoTaNhaTro']);?>
                 </p>
               </div>
               <?php }?>
@@ -79,18 +79,21 @@
             <div class="product__container">
               <?php
               if(is_null($room)){
-                echo 'Bạn chưa có nhà trọ';
+                echo 'Bạn chưa có nhà trọ';?>
+              </div>
+              <?php
+                return;
               }
-              else{
+              // else{
                 foreach($room as $item){ ?>
                   <div class="product__item">
                     <div class="product__item__img">
-                      <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo 'a'; ?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                      <a href="../views/indetails.php?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
                         <img src="https://akkogear.com.vn/wp-content/uploads/2022/08/ban-phim-co-akko-3068b-plus-black-gold-03.jpg" alt="">
                       </a>
                     </div>
                     <h4 class="product__item__title">
-                      <a href="../page/roomDetailsGuest.php?idNhaTro=<?php echo 'a';?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                      <a href="../page/indetails.php?idNhaTro=<?php echo $_GET['idNhaTro'];?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
                         <?php echo $item['SoPhong'];?>
                       </a>
                     </h4>
@@ -99,7 +102,8 @@
                       Xem list sản phẩm
                   </a>
               </div>
-            <?php }} ?>
+          <?php
+          } ?>
           </div>
 <?php
       }
