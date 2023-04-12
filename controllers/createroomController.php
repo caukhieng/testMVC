@@ -56,7 +56,6 @@ class CreateRoom
             $room = $_POST['room'];
             $des = $_POST['des'];
             $id = $_GET['idNhaTro'];
-
             $roomModel = new RoomModel();
             $result = $roomModel->addRoom($id, $des, $price, $size, $room);
             if($result) echo '<meta http-equiv="refresh" content="0;url=homepage.php">';

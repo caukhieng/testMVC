@@ -91,3 +91,23 @@ function scrollToTop() {
   document.documentElement.scrollTop = 0;
 }
 // Update scroll position to the top of the page
+
+/* Show image on selected. */
+const pictureInput = document.querySelector('#picture');
+const selectedPictures = document.querySelector('#selected-pictures');
+
+pictureInput.addEventListener('change', (event) => {
+    selectedPictures.innerHTML = '';
+    const files = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.width = 200;
+        img.onload = () => {
+            URL.revokeObjectURL(img.src);
+        };
+        selectedPictures.appendChild(img);
+    }
+});
+/* Show image on selected. */

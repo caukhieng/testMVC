@@ -1,0 +1,6 @@
+{
+    "require": {
+        "kreait/firebase-php": "7.0",
+        "google/crc32": "^0.1.0"
+    }
+}
