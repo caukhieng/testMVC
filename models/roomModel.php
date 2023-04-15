@@ -37,13 +37,14 @@ class roomModel
     }
     public function getRoom($id)
     {
-      $query = "SELECT phongtro.*, picture.url, nhatro.DiaChi as DiaChiNhaTro 
+      $query = "SELECT phongtro.*, picture.id, picture.url, nhatro.DiaChi as DiaChiNhaTro 
                 FROM phongtro
                 LEFT JOIN (
-                  SELECT url, MaPhongTro FROM picture
-                  GROUP BY MaPhongTro
-                  ORDER BY RAND()
-                ) picture ON phongtro.MaPhongTro = picture.MaPhongTro
+                    SELECT id, url, MaPhongTro
+                    FROM picture
+                    ORDER BY RAND()
+                  LIMIT 1
+                ) AS picture ON phongtro.MaPhongTro = picture.MaPhongTro
                 LEFT JOIN nhatro ON phongtro.MaNhaTro = nhatro.MaNhaTro
                 WHERE nhatro.MaNhaTro = '$id'
                 ORDER BY phongtro.MaPhongTro ASC";

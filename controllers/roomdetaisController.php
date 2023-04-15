@@ -15,19 +15,17 @@
             foreach($details as $row){
         ?>
           <div class="details__product">
-          <?php if(isset($row['url'])): ?>
                 <div class="details__product__left">
                   <div class="details__product__left__img">
-                    <img src="<?php echo $row['url']; ?>" alt="">
+                    <?php
+                  if (!empty($row['url'])) {
+                      echo '<img src="' . $row['url'] . '" alt="">';
+                  } else {
+                      echo '<img src="https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/images%2FMotel-Nacht.webp?alt=media&token=8ae8f91f-2adc-44a5-8928-9a3009ed84fe" alt="">';
+                  }
+                  ?>
                   </div>
                 </div>
-              <?php else: ?>
-                <div class="details__product__left">
-                  <div class="details__product__left__img">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/images%2FMotel-Nacht.webp?alt=media&token=8ae8f91f-2adc-44a5-8928-9a3009ed84fe" alt="">
-                  </div>
-                </div>
-              <?php endif; ?>
               <div class="details__product__right">
                   <h3 class="details__product__right__title">
                     <?php echo $row['DiaChi'] ?>
