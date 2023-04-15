@@ -16,7 +16,7 @@
       </div>
       <div class="slide__right">
         <a href="">
-          <img src="http://localhost/Webphongtro/assets/images/big-slide-1.jpg" alt="">
+          <img src="http://localhost/phpmvc/assets/images/big-slide-1.jpg" alt="">
         </a>
       </div>
     </div>
@@ -36,7 +36,7 @@
       </div>
       <div class="slide__right">
         <a href="">
-          <img src="http://localhost/Webphongtro/assets/images/slide1.png" alt="">
+          <img src="http://localhost/phpmvc/assets/images/slide1.png" alt="">
         </a>
       </div>
     </div>
@@ -56,7 +56,7 @@
       </div>
       <div class="slide__right">
         <a href="">
-          <img src="http://localhost/Webphongtro/assets/images/Banner_03_youtube.png" alt="">
+          <img src="http://localhost/phpmvc/assets/images/Banner_03_youtube.png" alt="">
         </a>
       </div>
     </div>
@@ -76,7 +76,7 @@
       </div>
       <div class="slide__right">
         <a href="">
-          <img src="http://localhost/Webphongtro/assets/images/Banner_04_2.png" alt="">
+          <img src="http://localhost/phpmvc/assets/images/Banner_04_2.png" alt="">
         </a>
       </div>
     </div>

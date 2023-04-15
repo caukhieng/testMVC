@@ -70,10 +70,10 @@ class pictureModel
         }
         return $success;
     }
-    public function getImageDatabase($idPhongTro)
+    public function getImageDatabase()
     {
         // $query = "SELECT * FROM `picture` WHERE `idPhongTro` = '$idPhongTro'";
-        $query = "SELECT * FROM `picture` ORDER BY RAND() LIMIT 1";
+        $query = "SELECT url FROM `picture` ORDER BY RAND() LIMIT 1";
         $result =  $this->db->select($query);
         if(!$result) return false;
         return $result;
