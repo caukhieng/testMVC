@@ -15,11 +15,19 @@
             foreach($details as $row){
         ?>
           <div class="details__product">
-              <div class="details__product__left">
-                <div class="details__product__left__img">
-                  <img src="https://akkogear.com.vn/wp-content/uploads/2022/08/ban-phim-co-akko-3068b-plus-black-gold-03.jpg" alt="">
+          <?php if(isset($row['url'])): ?>
+                <div class="details__product__left">
+                  <div class="details__product__left__img">
+                    <img src="<?php echo $row['url']; ?>" alt="">
+                  </div>
                 </div>
-              </div>
+              <?php else: ?>
+                <div class="details__product__left">
+                  <div class="details__product__left__img">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/images%2FMotel-Nacht.webp?alt=media&token=8ae8f91f-2adc-44a5-8928-9a3009ed84fe" alt="">
+                  </div>
+                </div>
+              <?php endif; ?>
               <div class="details__product__right">
                   <h3 class="details__product__right__title">
                     <?php echo $row['DiaChi'] ?>
@@ -55,14 +63,6 @@
             </div>
         </div>
       </div>
-      <!-- <script>
-        function confirmDelete(id) {
-            if (confirm("Bạn có muốn xóa?")) {
-                window.location.href = "phpmvc/controllers/deletemotelController.php?idNhaTro=" + id;
-            }
-        }
-      </script> -->
-
 <?php
         }
       }
@@ -87,11 +87,11 @@
               // else{
                 foreach($room as $item){ ?>
                   <div class="product__item">
-                    <div class="product__item__img">
-                      <a href="../views/indetails.php?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
-                        <img src="https://akkogear.com.vn/wp-content/uploads/2022/08/ban-phim-co-akko-3068b-plus-black-gold-03.jpg" alt="">
-                      </a>
-                    </div>
+                  <div class="product__item__img">
+                    <a href="../views/indetails.php?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&amp;&amp;idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                      <img src="<?php echo $item['url'] ? $item['url'] : 'https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg'; ?>" alt="">
+                    </a>
+                  </div>
                     <h4 class="product__item__title">
                       <a href="../page/indetails.php?idNhaTro=<?php echo $_GET['idNhaTro'];?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
                         <?php echo $item['SoPhong'];?>

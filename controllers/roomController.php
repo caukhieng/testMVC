@@ -11,7 +11,7 @@
             <div class="product__item">
               <div class="product__item__img">
                 <a href="../views/indetails.php?idPhongTro=<?php echo $row['MaPhongTro'];?>&idNhaTro=<?php echo $row['MaNhaTro'];?>">
-                  <img src="https://cdn.luatvietnam.vn/uploaded/Images/Original/2022/09/05/mau-hop-dong-thue-tro-2022-1_0509150415.jpg" alt="">
+                  <img src="<?php echo $row['url'] ? $row['url'] : 'https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg'; ?>" alt="">
                 </a>
               </div>
               <h4 class="product__item__title">

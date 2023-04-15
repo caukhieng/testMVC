@@ -58,7 +58,8 @@
                         echo "Failed to save images to database";
                         return;
                     }
-                    echo 'Images uploaded successfully';
+                    // echo 'Images uploaded successfully';
+                    echo '<meta http-equiv="refresh" content="0;url=homepage.php">';
                 }
             }
         }

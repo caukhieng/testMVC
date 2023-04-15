@@ -1,5 +1,6 @@
 <?php
     include_once('../libs/database.php');
+    include_once('../models/pictureModel.php');
 class roomModel
 {
     private $db;
@@ -13,9 +14,16 @@ class roomModel
     {
         $this->db = new Database();
     }
-    public function getAllRooms() 
+    public function getAllRooms()
     {
-        $query = "SELECT * FROM phongtro";
+        $query = "SELECT phongtro.*, picture.url
+                FROM phongtro
+                LEFT JOIN (
+                SELECT MaPhongTro, url
+                FROM picture
+                ORDER BY RAND()
+                LIMIT 1 ) picture
+                ON phongtro.MaPhongTro = picture.MaPhongTro";
         $result = $this->db->select($query);
         if (!$result) {
           echo "Database Error: " . $this->db->error;
@@ -29,7 +37,16 @@ class roomModel
     }
     public function getRoom($id)
     {
-      $query = "SELECT * FROM phongtro WHERE MaNhaTro = '$id'";
+      $query = "SELECT phongtro.*, picture.url, nhatro.DiaChi as DiaChiNhaTro 
+                FROM phongtro
+                LEFT JOIN (
+                  SELECT url, MaPhongTro FROM picture
+                  GROUP BY MaPhongTro
+                  ORDER BY RAND()
+                ) picture ON phongtro.MaPhongTro = picture.MaPhongTro
+                LEFT JOIN nhatro ON phongtro.MaNhaTro = nhatro.MaNhaTro
+                WHERE nhatro.MaNhaTro = '$id'
+                ORDER BY phongtro.MaPhongTro ASC";
       $result = $this->db->selectWithoutDebug($query);
       if (!$result) {
           return null;
@@ -38,7 +55,12 @@ class roomModel
     }
     public function getRoomDebug($id)
     {
-      $query = "SELECT * FROM phongtro WHERE MaPhongTro = '$id'";
+      $query = "SELECT phongtro.*, picture.url
+                FROM phongtro
+                LEFT JOIN picture ON phongtro.MaPhongTro = picture.MaPhongTro
+                WHERE phongtro.MaPhongTro = '$id'
+                ORDER BY RAND()
+                LIMIT 1";
       $result = $this->db->select($query);
       if (!$result) {
           return null;

@@ -28,7 +28,7 @@
         <div class="product">
           <h3 class="heading">
             <i class='bx bx-shopping-bag' ></i>
-            Sản phẩm nhà trọ mới nhất
+            Sản phẩm nhà trọ
           </h3>
         <?php 
           include_once(__DIR__ .'/../controllers/roomController.php');

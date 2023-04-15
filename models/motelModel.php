@@ -14,7 +14,16 @@ class motelModel
         $this->db = new Database();
     }
     public function getAllMotels($idOwner){
-        $query = "SELECT * FROM nhatro where MaChuTro = $idOwner";
+        $query = "SELECT nhatro.*, picture.url
+                FROM nhatro
+                LEFT JOIN phongtro ON nhatro.MaNhaTro = phongtro.MaNhaTro
+                LEFT JOIN (
+                SELECT *
+                FROM picture
+                ORDER BY RAND()
+                ) AS picture ON phongtro.MaPhongTro = picture.MaPhongTro
+                WHERE nhatro.MaChuTro = '$idOwner'
+                GROUP BY nhatro.MaNhaTro";
         $result = $this->db->select($query);
         if (!$result) {
             echo "Database Error: " . $this->db->error;
