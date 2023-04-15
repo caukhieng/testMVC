@@ -111,3 +111,57 @@ pictureInput.addEventListener('change', (event) => {
     }
 });
 /* Show image on selected. */
+
+// SEARCH FUNCTIONS
+let timeoutId;
+document.getElementById('search-input').addEventListener('input', function() {
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(function() {
+    let searchValue = document.getElementById('search-input').value;
+    if (searchValue.trim() !== '') {
+      fetch('/models/roomModel.php', {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'findRoom',
+          searchValue: searchValue
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        let html = '';
+        if (data.length > 0) {
+          data.forEach(value => {
+            html += '<div class="search-result">';
+            html += '<a href="indetails.php?idPhongTro=' + value.MaPhongTro + '">';
+            html += '<h3 class="search-result__title">' + value.MoTaPhongTro + '</h3>';
+            html += '<p class="search-result__address">' + value.DiaChi + '</p>';
+            html += '<p class="search-result__price">' + value.GiaThue + '</p>';
+            html += '</a>';
+            html += '</div>';
+          });
+        } else {
+          html = '<p class="no-results">Không tìm thấy kết quả</p>';
+        }
+        document.getElementById('search-results').innerHTML = html;
+      })
+      .catch(error => console.error(error));
+    }
+  }, 500);
+});
+// SEARCH FUNCTIONS
+
+// LOADING
+window.addEventListener("load", function () {
+  const bar = document.querySelector(".bar");
+  bar.style.width = "100%";
+  setTimeout(function () {
+    bar.style.width = "0%";
+    setTimeout(function () {
+      document.getElementById("loading-bar").style.display = "none";
+    }, 300);
+  }, 1000);
+});
+// LOADING

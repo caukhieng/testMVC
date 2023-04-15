@@ -5,6 +5,14 @@
     exit;
   } // use to logout account
 ?>
+<?php
+if (isset($_POST['search-input'])) {
+  include_once('../models/roomModel.php');
+  $roomModel = new roomModel();
+  $searchValue = $_POST['search-input'];
+  echo $roomModel->findRoom($searchValue);
+}
+?>
 <header class="header">
   <div class="header__menu__toggle">
     <i class='bx bx-menu-alt-left' ></i>
@@ -15,35 +23,36 @@
   </a>
   </h4>
   <div class="header__search">
-    <i class='bx bx-search icon-search header__search__icon' ></i>
+    <i class='bx bx-search icon-search header__search__icon'></i>
     <input type="text" spellcheck="false"
-      placeholder="Tìm kiếm nhà trọ bạn cần"
-    class="header__search__input">
+          placeholder="Tìm kiếm nhà trọ bạn cần"
+          class="header__search__input" id="search-input">
+    <div id="search-results"></div>
   </div>
   <div class="header__action">
-    <button class="btn btn--cart header__action__btn">
-        <?php if(isset($_SESSION['user_name'])): ?>
+    <?php if(isset($_SESSION['user_name'])): ?>
+      <button class="btn btn--cart header__action__btn">
       <a href="?login=logout">
         <i class="bx bxs-user"></i>
         Đăng xuất
       </a>
-    <?php else: ?>
-      <a href="">
+    </button>
+      <!-- <a href="">
         <i class="bx bxs-user"></i>
         Xác nhận tài khoản
-      </a>
+      </a> -->
     <?php endif; ?>
-    </button>
     <button class="btn btn--primary header__action__btn">
       <?php if (isset($_SESSION['user_name'])): ?>
         <a href="user_info.php">
           <i class="bx bxs-user"></i> <?php echo $_SESSION['user_name']; ?>
         </a>
       <?php else: ?>
-        <a href="/../phpmvc/views/login.php">
+        <a href="login.php">
           <i class="bx bxs-user"></i> Đăng nhập
         </a>
       <?php endif; ?>
   </button>
   </div>
 </header>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
