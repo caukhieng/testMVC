@@ -51,8 +51,14 @@ class userController
 
         if(isset($_POST['submit'])){
             $email = trim($_POST['email']);
+            $pattern = '/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/'; // regular expression pattern for email address
             $password = trim($_POST['password']);
             $accountModel = new accountModel();
+            if(!preg_match($pattern, $email)){
+                $errorMessage = "Vui lòng kiểm tra lại email.";
+                echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
+                return;
+            }
             $loginSuccessful = $accountModel->login($email, $password);
             if($loginSuccessful){
                 $userid = $_SESSION['user_id'];

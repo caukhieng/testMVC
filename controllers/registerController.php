@@ -58,6 +58,7 @@
                 $email = trim($_POST['email']);
                 $password = trim($_POST['password']);
                 $comfirmPassword = trim($_POST['comfirmpassword']);
+                $pattern = '/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/'; // regular expression pattern for email address
                 $role = $_POST['role'];
                  // VALIDATE PASSWORD
                 $uppercase = preg_match('@[A-Z]@', $comfirmPassword);
@@ -68,28 +69,32 @@
                 if(!$uppercase || !$lowercase || !$number || strlen($comfirmPassword) < 6) {
                     $errorMessage = "Mật khẩu phải có ít nhất 6 ký tự, 1 chữ số, 1 chữ hoa";
                     echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '$errorMessage';</script>";
+                    return;
                 }
-                else if($password === '' || $password !== $comfirmPassword) {
+                if($password === '' || $password !== $comfirmPassword) {
                     $errorMessage = "Vui lòng kiểm tra lại mật khẩu";
                     echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '$errorMessage';</script>";
+                    return;
+                }
+                if(!preg_match($pattern, $email)){
+                    $errorMessage = "Vui lòng kiểm tra lại email.";
+                    echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
+                    return;
+                }
+                $accountModel = new accountModel();
+                $check = $accountModel->foundUser($email);
+                if($check){
+                    $errorMessage = "Tài khoản đã tồn tại";
+                    echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
+                    return;
+                }
+                $addUser = $accountModel->register($email, $password, $role);
+                if($addUser){
+                    $_SESSION['user_mail'] = $email;
+                    echo '<meta http-equiv="refresh" content="0;url=verify.php">'; //going to verify page
                 }
                 else {
-                    $accountModel = new accountModel();
-                    $check = $accountModel->foundUser($email);
-                    if($check){
-                        $errorMessage = "Tài khoản đã tồn tại";
-                        echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
-                    }
-                    else{
-                        $addUser = $accountModel->register($email, $password, $role);
-                        if($addUser){
-                            $_SESSION['user_mail'] = $email;
-                            echo '<meta http-equiv="refresh" content="0;url=verify.php">'; //going to verify page
-                        }
-                        else {
-                            echo '<meta http-equiv="refresh" content="0;url=notfound.php">'; //we're going to brazil
-                        }
-                    }
+                    echo '<meta http-equiv="refresh" content="0;url=notfound.php">'; //we're going to brazil
                 }
             }
             else {
