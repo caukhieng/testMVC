@@ -101,6 +101,11 @@
     include '../components/mommom/Footer.php'
   ?>
   <button onclick="scrollToTop()" id="scroll-to-top">↑</button>
+  <script>
+     window.env = {
+      URL: "<?php echo base64_encode($_ENV['URL']); ?>"
+    };
+  </script>
   <script type="text/javascript" src="../assets/scripts/app1.js"></script>
-  <script type="text/javascript" src="../assets/scripts/key.js"></script>
+  <script src="../assets/scripts/key.js"></script>
 </body>

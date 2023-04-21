@@ -20,29 +20,8 @@ class pictureModel
         `Database` class. */
         $this->db = new Database();
         $factory = (new Factory())->withServiceAccount(__DIR__.'/../config/firebase-config.json');
-        // $this->firebase = $factory->createDatabase();
-
-        // $this->storage = new StorageClient([
-        //     // 'keyFilePath' => '/path/to/your/keyfile.json',
-        //     // 'projectId' => 'your-project-id',
-        //     'verify' => false
-        // ]);
         $this->storage = $factory->createStorage();
     }
-    // public function uploadImagesFirebase($files)
-    // {
-    //     $urls = [];
-    //     $bucket = $this->storage->getBucket();
-    //     foreach ($files as $file) {
-    //         $objectName = 'images/' . uniqid() . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
-    //         $object = $bucket->upload(file_get_contents($file['tmp_name']), [
-    //             'name' => $objectName
-    //         ]);
-    //         $url = $object->signedUrl(new \DateTime('tomorrow'));
-    //         $urls[] = $url;
-    //     }
-    //     return $urls;
-    // }
     public function uploadImagesFirebase($files)
     {
         $urls = [];

@@ -3,7 +3,7 @@ let hero_slide_index = 0;
 let hero_slide_play = true;
 const hero_slide_items_control = document.querySelectorAll('.slide__control__item');
 
-console.log(hero_slide_items);
+// console.log(hero_slide_items);
 
 const slide_next = document.querySelector('.slide__control_next');
 
