@@ -6,11 +6,16 @@
   } // use to logout account
 ?>
 <?php
-if (isset($_POST['search-input'])) {
+if (isset($_POST['searchValue'])) {
   include_once('../models/roomModel.php');
-  $roomModel = new roomModel();
-  $searchValue = $_POST['search-input'];
-  echo $roomModel->findRoom($searchValue);
+  $searchValue = $_POST['searchValue'];
+  $roomModel = new RoomModel();
+  $rooms = $roomModel->findRoom($searchValue);
+  if (!$rooms) {
+    echo json_encode(['error' => 'No results found']);
+    return;
+  }
+    echo json_encode($rooms);
 }
 ?>
 <header class="header">

@@ -102,4 +102,5 @@
   ?>
   <button onclick="scrollToTop()" id="scroll-to-top">↑</button>
   <script type="text/javascript" src="../assets/scripts/app1.js"></script>
+  <script type="text/javascript" src="../assets/scripts/key.js"></script>
 </body>

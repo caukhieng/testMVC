@@ -1,6 +1,7 @@
 {
     "require": {
         "kreait/firebase-php": "7.0",
-        "google/crc32": "^0.1.0"
+        "google/crc32": "^0.1.0",
+        "vlucas/phpdotenv": "^5.5"
     }
 }

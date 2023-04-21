@@ -2,3 +2,4 @@
 /config/firebase-config.json
 /vendor
 /phpversion.php
+/.env
