@@ -35,6 +35,11 @@
                 Xem chi tiết
               </a>
             </div>
+            <script>
+            window.env = {
+              URL: "<?php echo base64_encode($_ENV['URL']); ?>"
+            };
+          </script>
             <?php } ?>
           </div>
           <?php

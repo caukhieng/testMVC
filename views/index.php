@@ -30,7 +30,7 @@
             <i class='bx bx-shopping-bag' ></i>
             Sản phẩm nhà trọ
           </h3>
-        <?php 
+        <?php
           include_once(__DIR__ .'/../controllers/roomController.php');
           $roomController = new roomController();
           $roomController();
@@ -101,11 +101,6 @@
     include '../components/mommom/Footer.php'
   ?>
   <button onclick="scrollToTop()" id="scroll-to-top">↑</button>
-  <script>
-     window.env = {
-      URL: "<?php echo base64_encode($_ENV['URL']); ?>"
-    };
-  </script>
   <script type="text/javascript" src="../assets/scripts/app1.js"></script>
   <script src="../assets/scripts/key.js"></script>
 </body>
