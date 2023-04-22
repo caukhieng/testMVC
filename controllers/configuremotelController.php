@@ -64,7 +64,7 @@ class configure
         }
         $result = $motel->updateDetails($_GET['idNhaTro'], $newAdd, $newDes);
         if(!$result) return;
-        echo '<meta http-equiv="refresh" content="0;url=homepage.php">';
+        echo '<meta http-equiv="refresh" content="0;url=homepage">';
       }
     }
 }

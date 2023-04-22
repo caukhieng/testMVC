@@ -59,7 +59,7 @@
                         return;
                     }
                     // echo 'Images uploaded successfully';
-                    echo '<meta http-equiv="refresh" content="0;url=homepage.php">';
+                    echo '<meta http-equiv="refresh" content="0;url=homepage">';
                 }
             }
         }

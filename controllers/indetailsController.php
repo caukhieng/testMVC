@@ -37,7 +37,7 @@ class detailsView
                   <?php echo $row['DienTich']; ?>
                 </h4>
                 <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0): ?>
-                  <a href="../views/configureroom.php?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
+                  <a href="../views/configureroom?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
                     <button type="submit" name="submit" class="btn btn--add">
                     <i class='bx bx-shopping-bag' ></i>
                     Chỉnh sửa thông tin phòng
@@ -56,7 +56,7 @@ class detailsView
                     </button>
                   </a> -->
                 <?php else: ?>
-                  <a href="../views/NotFound.php">
+                  <a href="../views/NotFound">
                     <button type="submit" name="submit" class="btn btn--add">
                     <i class='bx bx-shopping-bag' ></i>
                     Đặt phòng

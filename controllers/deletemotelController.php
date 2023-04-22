@@ -8,7 +8,7 @@ class deleteMotel {
       $motel = new motelModel();
       if (isset($_POST['submit'])) {
           $motel->delete($id);
-          echo '<meta http-equiv="refresh" content="0;url=homepage.php">';
+          echo '<meta http-equiv="refresh" content="0;url=homepage">';
           exit();
       }
   }

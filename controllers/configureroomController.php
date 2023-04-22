@@ -82,7 +82,7 @@ class configure
         }
         $result = $roomModel->updateRoom($id, $description, $price, $size, $room);
         if(!$result) return;
-        echo '<meta http-equiv="refresh" content="0;url=homepage.php">';
+        echo '<meta http-equiv="refresh" content="0;url=homepage">';
       }
     }
 }

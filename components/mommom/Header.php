@@ -1,13 +1,13 @@
 <?php
   if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     session_destroy();
-    header('Location: index.php');
+    header('Location: index');
     exit;
   } // use to logout account
 ?>
 <?php
 if (isset($_POST['searchValue'])) {
-  include_once('../models/roomModel.php');
+  include_once('../models/roomModel');
   $searchValue = $_POST['searchValue'];
   $roomModel = new RoomModel();
   $rooms = $roomModel->findRoom($searchValue);
@@ -23,7 +23,7 @@ if (isset($_POST['searchValue'])) {
     <i class='bx bx-menu-alt-left' ></i>
   </div>
   <h4 class="header__logo">
-  <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? 'homepage.php' : 'index.php'; ?>">
+  <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? 'homepage' : 'index'; ?>">
     L<span>ONG</span> N<span>HONG</span>
   </a>
   </h4>
@@ -49,11 +49,11 @@ if (isset($_POST['searchValue'])) {
     <?php endif; ?>
     <button class="btn btn--primary header__action__btn">
       <?php if (isset($_SESSION['user_name'])): ?>
-        <a href="user_info.php">
+        <a href="user_info">
           <i class="bx bxs-user"></i> <?php echo $_SESSION['user_name']; ?>
         </a>
       <?php else: ?>
-        <a href="login.php">
+        <a href="login">
           <i class="bx bxs-user"></i> Đăng nhập
         </a>
       <?php endif; ?>

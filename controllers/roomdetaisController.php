@@ -31,13 +31,13 @@
                     <?php echo $row['DiaChi'] ?>
                   </h3>
                     <?php $id = $_GET['idNhaTro'];?>
-                    <a href="../views/createroom.php?idNhaTro=<?php echo $id;?>">
+                    <a href="../views/createroom?idNhaTro=<?php echo $id;?>">
                       <button type="submit" name="submit" class="btn btn--add">
                       <i class='bx bx-shopping-bag' ></i>
                       Thêm phòng trọ
                       </button>
                     </a>
-                    <a href="../views/configuremotel.php?idNhaTro=<?php echo $id;?>">
+                    <a href="../views/configuremotel?idNhaTro=<?php echo $id;?>">
                       <button type="submit" name="submit" class="btn btn--add">
                       <i class='bx bx-shopping-bag' ></i>
                       Chỉnh sửa nhà trọ
@@ -86,12 +86,12 @@
                 foreach($room as $item){ ?>
                   <div class="product__item">
                   <div class="product__item__img">
-                    <a href="../views/indetails.php?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&amp;&amp;idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                    <a href="../views/indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&amp;&amp;idPhongTro=<?php echo $item['MaPhongTro'];?>">
                       <img src="<?php echo $item['url'] ? $item['url'] : 'https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg'; ?>" alt="">
                     </a>
                   </div>
                     <h4 class="product__item__title">
-                      <a href="../page/indetails.php?idNhaTro=<?php echo $_GET['idNhaTro'];?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                      <a href="../page/indetails?idNhaTro=<?php echo $_GET['idNhaTro'];?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
                         <?php echo $item['SoPhong'];?>
                       </a>
                     </h4>

@@ -46,7 +46,7 @@
             $result = $accountModel->registerName($id, $name, $cmnd);
             if($result){
                 /* Redirecting the user to the login page. */
-                echo '<meta http-equiv="refresh" content="0;url=login.php">';
+                echo '<meta http-equiv="refresh" content="0;url=login">';
             }
         }
         }

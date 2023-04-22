@@ -58,7 +58,7 @@ class userController
                 $result = $accountModel->updatePassword($email, $password);
                 if($result){
                     // echo "ok";
-                    echo '<meta http-equiv="refresh" content="0;url=login.php">';
+                    echo '<meta http-equiv="refresh" content="0;url=login">';
                 }
              }
         }

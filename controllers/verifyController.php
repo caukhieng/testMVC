@@ -48,7 +48,7 @@
                 // $queryStrUpdate = "UPDATE `account` SET `verify`=1 WHERE `MaAccount` = $id";
                 $update = $accountModel->updateVerify($email, $id);
                 if($update == true){
-                  echo '<meta http-equiv="refresh" content="0;url=registerName.php">';
+                  echo '<meta http-equiv="refresh" content="0;url=registerName">';
                 }
               }
             }
@@ -75,7 +75,7 @@
             // echo "<script language='javascript'>alert('$errorMessage');</script>";
             echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '$errorMessage';</script>";
           } else if($otp == $checkotp) {
-            echo '<meta http-equiv="refresh" content="0;url=updatepassword.php">';
+            echo '<meta http-equiv="refresh" content="0;url=updatepassword">';
           }
           else {
             $errorMessage = "OTP sai!";

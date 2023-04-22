@@ -58,8 +58,8 @@ class CreateRoom
             $id = $_GET['idNhaTro'];
             $roomModel = new RoomModel();
             $result = $roomModel->addRoom($id, $des, $price, $size, $room);
-            if($result) echo '<meta http-equiv="refresh" content="0;url=homepage.php">';
-            else echo '<meta http-equiv="refresh" content="0;url=notfound.php">';
+            if($result) echo '<meta http-equiv="refresh" content="0;url=homepage">';
+            else echo '<meta http-equiv="refresh" content="0;url=notfound">';
         }
     }
 }

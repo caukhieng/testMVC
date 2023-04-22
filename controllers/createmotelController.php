@@ -42,8 +42,8 @@ class motelController
             $des = $_POST['des'];
             $motelModel = new motelModel();
             $result = $motelModel->addMotel($address, $des, $id);
-            if($result) echo '<meta http-equiv="refresh" content="0;url=homepage.php">';
-            else echo '<meta http-equiv="refresh" content="0;url=notfound.php">';
+            if($result) echo '<meta http-equiv="refresh" content="0;url=homepage">';
+            else echo '<meta http-equiv="refresh" content="0;url=notfound">';
         }
     }
 }

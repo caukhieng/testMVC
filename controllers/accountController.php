@@ -36,8 +36,8 @@
                     </select>
                 </div>
                 <button type="submit" name="submit" class="form-submit">Đăng nhập</button>
-                <a href="register.php" class="register">Đăng ký tài khoản tại đây!</a><br>
-                Quên mật khẩu ? <a href="forgetPassword.php" class="register">Nhấn vào đây!</a>
+                <a href="register" class="register">Đăng ký tài khoản tại đây!</a><br>
+                Quên mật khẩu ? <a href="forgetPassword" class="register">Nhấn vào đây!</a>
             </form>
 <?php
     }
@@ -68,7 +68,7 @@ class userController
                     $user = $db->select($query)->fetch_assoc();
                     $_SESSION['user_name'] = $user['Ten'];
                     $_SESSION['user_idNum'] = $user['MaChuTro'];
-                    echo '<meta http-equiv="refresh" content="0;url=homepage.php">';
+                    echo '<meta http-equiv="refresh" content="0;url=homepage">';
                 }
                 else if($_SESSION['user_role'] == 1){
                     $query = "SELECT * FROM khachtro where MaAccount = '$userid'";
@@ -76,11 +76,11 @@ class userController
                     $user = $db->select($query)->fetch_assoc();
                     $_SESSION['user_name'] = $user['Ten'];
                     $_SESSION['user_idNum'] = $user['MaKhachTro'];
-                    echo '<meta http-equiv="refresh" content="0;url=index.php">';
+                    echo '<meta http-equiv="refresh" content="0;url=index">';
 
                 }
                 else {
-                    echo '<meta http-equiv="refresh" content="0;url=notfound.php">';
+                    echo '<meta http-equiv="refresh" content="0;url=notfound">';
                 }
                 // $redirect = $_SESSION['user_role'] == 0 ? 'index.php' : 'index.php';
                 // header('Location:' . $redirect);

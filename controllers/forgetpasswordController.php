@@ -38,7 +38,7 @@ class userController
             $accountModel = new accountModel();
             $result = $accountModel->forgetpassword($email);
             if($result){
-              echo '<meta http-equiv="refresh" content="0;url=verify.php?forget=yes">';
+              echo '<meta http-equiv="refresh" content="0;url=verify?forget=yes">';
             }
         }
     }

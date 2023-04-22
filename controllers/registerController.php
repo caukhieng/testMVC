@@ -42,7 +42,7 @@
             </div>
 
             <button type="submit" name="submit" class="form-submit">Đăng ký</button>
-            <a href="login.php" class="register">Đăng nhập tại đây</a><br>
+            <a href="login" class="register">Đăng nhập tại đây</a><br>
           </form>
         </div>
         <?php
@@ -91,10 +91,10 @@
                 $addUser = $accountModel->register($email, $password, $role);
                 if($addUser){
                     $_SESSION['user_mail'] = $email;
-                    echo '<meta http-equiv="refresh" content="0;url=verify.php">'; //going to verify page
+                    echo '<meta http-equiv="refresh" content="0;url=verify">'; //going to verify page
                 }
                 else {
-                    echo '<meta http-equiv="refresh" content="0;url=notfound.php">'; //we're going to brazil
+                    echo '<meta http-equiv="refresh" content="0;url=notfound">'; //we're going to brazil
                 }
             }
             else {
@@ -103,4 +103,4 @@
                 return false;
             }
         }
-    }    
+    }
