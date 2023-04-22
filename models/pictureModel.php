@@ -31,7 +31,10 @@ class pictureModel
             $object = $bucket->upload(file_get_contents($file['tmp_name']), [
                 'name' => $objectName
             ]);
-            $url = $object->signedUrl(new \DateTime('tomorrow'));
+            $expirationTime = new \DateTime();
+            $expirationTime->modify('+1 month');
+            $url = $object->signedUrl($expirationTime);
+            // $url = $object->signedUrl(new \DateTime(''));
             $urls[] = $url;
         }
         return $urls;
