@@ -60,4 +60,11 @@ class pictureModel
         if(!$result) return false;
         return $result;
     }
+    public function getAllImageDatabase($id)
+    {
+        $query = "SELECT * FROM `picture` WHERE MaPhongTro = $id";
+        $result = $this->db->select($query);
+        if(!$result) return false;
+        return $result;
+    }
 }

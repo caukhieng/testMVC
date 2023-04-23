@@ -4,7 +4,6 @@
     use Dotenv\Dotenv;
     $dotenv = Dotenv::createImmutable(__DIR__.'/../');
     $dotenv->load();
-    // echo $_ENV['URL'];
     class roomView
     {
         public function render($rooms)
@@ -37,7 +36,8 @@
             </div>
             <script>
             window.env = {
-              URL: "<?php echo base64_encode($_ENV['URL']); ?>"
+              URL: "<?php echo base64_encode($_ENV['URL']); ?>",
+              ADMIN_SECRET_KEY: "<?php echo base64_encode($_ENV['ADMIN_SECRET_KEY']); ?>"
             };
           </script>
             <?php } ?>

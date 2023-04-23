@@ -43,7 +43,7 @@ class detailsView
                     Chỉnh sửa thông tin phòng
                     </button>
                   </a>
-                  <a href="../views/?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
+                  <a href="../views/configureimage?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
                     <button type="submit" name="submit" class="btn btn--add">
                     <i class='bx bx-shopping-bag' ></i>
                     Chỉnh sửa hình ảnh
