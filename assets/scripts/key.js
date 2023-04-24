@@ -23,7 +23,7 @@ document.addEventListener("keydown", (event) => {
       submitBtn.addEventListener('click', () => {
         const passwordInput = dialog.querySelector('#password');
         const password = passwordInput.value;
-        if (password === atob(env.ADMIN_SECRET_KEY)) {
+        if (password.toLowerCase() === atob(env.ADMIN_SECRET_KEY).toLowerCase()) {
           window.location.replace(atob(env.URL) + "admin/");
         } else {
             passwordInput.value = '';

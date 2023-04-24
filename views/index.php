@@ -35,7 +35,7 @@
           $roomController = new roomController();
           $roomController();
         ?>
-        </div>
+        <!-- </div>
           <div class="product">
             <h3 class="heading">
               <i class="bx bx-cart-alt"></i>
@@ -94,7 +94,7 @@
                 </div>
               </div>
             </div>
-          </div>
+        </div> -->
       </div>
     </div>
   <?php
