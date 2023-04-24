@@ -21,13 +21,19 @@
     include '../components/mommom/Header.php';
   ?>
     <div class="main">
-      <?php 
+      <?php
       include '../components/mommom/slider.php';
       ?>
-      <?php 
+      <?php
         include '../controllers/uploadImageController.php';
-        $config = new configure();
-        $config();
+        if(isset($_GET['edit']) && $_GET['edit'] == 'true'){
+          $config = new editImage();
+          $config();
+        }
+        else {
+          $config = new configure();
+          $config();
+        }
       ?>
       </div>
     </div>

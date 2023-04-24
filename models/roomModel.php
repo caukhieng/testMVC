@@ -42,7 +42,7 @@ class roomModel
               LEFT JOIN (
                   SELECT id, url, MaPhongTro
                   FROM picture
-                  ORDER BY RAND()
+                  ORDER BY RAND() > 0 DESC
                 LIMIT 1
               ) AS picture ON phongtro.MaPhongTro = picture.MaPhongTro
               LEFT JOIN nhatro ON phongtro.MaNhaTro = nhatro.MaNhaTro

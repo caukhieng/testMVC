@@ -1,12 +1,11 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
-include_once('../libs/database.php');
+include_once __DIR__. ('/../libs/database.php');
 
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Storage\Storage;
 use Google\Cloud\Storage\StorageClient;
-
 class pictureModel
 {
     private $firebase;
@@ -66,5 +65,25 @@ class pictureModel
         $result = $this->db->select($query);
         if(!$result) return false;
         return $result;
+    }
+    public function updateImageDatabase($url, $idimage)
+    {
+        $query = "UPDATE `picture` SET url='$url' WHERE id = $idimage";
+        $result = $this->db->update($query);
+        if(!$result)
+        {
+            return false;
+        }
+        return true;
+    }
+    public function deleteImageDatabase($idimage)
+    {
+        $query = "DELETE FROM picture WHERE id = $idimage";
+        $result = $this->db->delete($query);
+        if(!$result)
+        {
+            return false;
+        }
+        return true;
     }
 }

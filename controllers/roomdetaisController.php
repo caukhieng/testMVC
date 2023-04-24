@@ -76,32 +76,27 @@
             </h3>
             <div class="product__container">
               <?php
-              if(is_null($room)){
+              if(is_null($room)):
                 echo 'Bạn chưa có nhà trọ';?>
               </div>
               <?php
                 return;
-              }
-              // else{
-                foreach($room as $item){ ?>
-                  <div class="product__item">
+              endif ?>
+                <div class="product__item">
                   <div class="product__item__img">
-                    <a href="../views/indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&amp;&amp;idPhongTro=<?php echo $item['MaPhongTro'];?>">
-                      <img src="<?php echo $item['url'] ? $item['url'] : 'https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg'; ?>" alt="">
-                    </a>
+                    <?php foreach($room as $item): ?>
+                      <a href="../views/indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                          <img src="<?php echo $item['url'] ? $item['url'] : 'https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg'; ?>" alt="">
+                      </a>
+                      <?php endforeach; ?>
                   </div>
+
                     <h4 class="product__item__title">
-                      <a href="../page/indetails?idNhaTro=<?php echo $_GET['idNhaTro'];?>&&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                      <a href="../page/indetails?idNhaTro=<?php echo $_GET['idNhaTro'];?>&idPhongTro=<?php echo $item['MaPhongTro'];?>">
                         <?php echo $item['SoPhong'];?>
                       </a>
                     </h4>
-                    <a href="categoryName" class="product__item__action">
-                      <i class='bx bx-category' ></i>
-                      Xem list sản phẩm
-                  </a>
-              </div>
-          <?php
-          } ?>
+                  </div>
           </div>
 <?php
       }
