@@ -27,7 +27,7 @@ The PHP manual is available at [php.net/docs](https://php.net/docs).
 Using XAMPP to install PHP version 8.2.4 +
 Clone the project with
 
-        git clone https://github.com/ItsaMeChun/phpmvc.git
+    git clone https://github.com/ItsaMeChun/phpmvc.git
 
 Then install composer
 
