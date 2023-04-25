@@ -6,7 +6,7 @@ $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     session_destroy();
-    header('Location:' . $_ENV['BASE_URL']);
+    header('Location:' . $_ENV['URL']);
     exit;
 } // use to logout account
 ?>
@@ -15,7 +15,7 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     <i class='bx bx-menu-alt-left' ></i>
   </div>
   <h4 class="header__logo">
-  <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? $_ENV['URL'] . 'homepage' : $_ENV['BASE_URL']; ?>">
+  <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? $_ENV['URL'] . 'homepage' : $_ENV['URL']; ?>">
     L<span>ONG</span> N<span>HONG</span>
   </a>
   </h4>
