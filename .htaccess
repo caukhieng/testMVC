@@ -1,13 +1,26 @@
 # Enable the mod_rewrite module
 RewriteEngine On
 
-# Rewrite rules for the admin section
+# Block direct access to the admin section in /views/admin
 RewriteCond %{REQUEST_URI} ^/phpmvc/admin [NC]
-# Route requests to the admin section
-RewriteRule .* views/admin/index.php [L,QSA]
+RewriteCond %{HTTP_REFERER} !^http://localhost/phpmvc/views/admin.*$ [NC]
+RewriteCond %{REQUEST_METHOD} !POST
+RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1 [F,L]
+
+# Redirect to admin section when a POST request is made
+RewriteCond %{REQUEST_URI} ^/phpmvc/admin [NC]
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1 [L]
 
 # Rewrite rules for all other requests
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{DOCUMENT_ROOT}/phpmvc/views/$1.php -f
 RewriteRule ^(.+)$ /phpmvc/views/$1.php [L,QSA]
+
+# Custom error pages
+ErrorDocument 400 /phpmvc/errors/400.php
+ErrorDocument 401 /phpmvc/errors/401.php
+ErrorDocument 403 /phpmvc/errors/403.php
+ErrorDocument 404 /phpmvc/errors/404.php
+ErrorDocument 500 /phpmvc/errors/500.php
