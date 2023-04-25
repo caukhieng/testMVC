@@ -1,7 +1,10 @@
 <?php 
     include_once(__DIR__ . '/../models/motelModel.php');
     include_once(__DIR__ . '/../models/roomModel.php');
-
+    require __DIR__ . '/../vendor/autoload.php';
+    use Dotenv\Dotenv;
+    $dotenv = Dotenv::createImmutable(__DIR__.'/../');
+    $dotenv->load();
     class detailsMotel
     {
         public function render($details)
@@ -31,13 +34,13 @@
                     <?php echo $row['DiaChi'] ?>
                   </h3>
                     <?php $id = $_GET['idNhaTro'];?>
-                    <a href="../views/createroom?idNhaTro=<?php echo $id;?>">
+                    <a href="<?php echo $_ENV['URL']; ?>createroom?idNhaTro=<?php echo $id;?>">
                       <button type="submit" name="submit" class="btn btn--add">
                       <i class='bx bx-shopping-bag' ></i>
                       Thêm phòng trọ
                       </button>
                     </a>
-                    <a href="../views/configuremotel?idNhaTro=<?php echo $id;?>">
+                    <a href="<?php echo $_ENV['URL']; ?>configuremotel?idNhaTro=<?php echo $id;?>">
                       <button type="submit" name="submit" class="btn btn--add">
                       <i class='bx bx-shopping-bag' ></i>
                       Chỉnh sửa nhà trọ
@@ -85,14 +88,14 @@
                 <div class="product__item">
                   <div class="product__item__img">
                     <?php foreach($room as $item): ?>
-                      <a href="../views/indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                      <a href="<?php echo $_ENV['URL']; ?>indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&idPhongTro=<?php echo $item['MaPhongTro'];?>">
                           <img src="<?php echo $item['url'] ? $item['url'] : 'https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg'; ?>" alt="">
                       </a>
                       <?php endforeach; ?>
                   </div>
 
                     <h4 class="product__item__title">
-                      <a href="../page/indetails?idNhaTro=<?php echo $_GET['idNhaTro'];?>&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                      <a href="<?php echo $_ENV['URL']; ?>indetails?idNhaTro=<?php echo $_GET['idNhaTro'];?>&idPhongTro=<?php echo $item['MaPhongTro'];?>">
                         <?php echo $item['SoPhong'];?>
                       </a>
                     </h4>

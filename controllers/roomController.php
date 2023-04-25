@@ -14,7 +14,7 @@
             ?>
             <div class="product__item">
               <div class="product__item__img">
-                <a href="../views/indetails?idPhongTro=<?php echo $row['MaPhongTro'];?>&idNhaTro=<?php echo $row['MaNhaTro'];?>">
+                <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro'];?>&idNhaTro=<?php echo $row['MaNhaTro'];?>">
                   <img src="<?php echo $row['url'] ? $row['url'] : 'https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg'; ?>" alt="">
                 </a>
               </div>
@@ -29,14 +29,14 @@
               <p style="padding-top: 1rem; margin-bottom: 1rem">
                   Diện tích <span><?php echo $row['DienTich']; ?></span>
               </p>
-              <a href="../views/indetails?idPhongTro=<?php echo $row['MaPhongTro'];?>&idNhaTro=<?php echo $row['MaNhaTro'];?>" class="product__item__action">
+              <a href="<?php echo $_ENV['URL']; ?>indetails?idPhongTro=<?php echo $row['MaPhongTro'];?>&idNhaTro=<?php echo $row['MaNhaTro'];?>" class="product__item__action">
                 <i class='bx bx-category' ></i>
                 Xem chi tiết
               </a>
             </div>
             <script>
             window.env = {
-              URL: "<?php echo base64_encode($_ENV['URL']); ?>",
+              URL: "<?php echo base64_encode($_ENV['ADMIN_URL']); ?>",
               ADMIN_SECRET_KEY: "<?php echo base64_encode($_ENV['ADMIN_SECRET_KEY']); ?>"
             };
           </script>

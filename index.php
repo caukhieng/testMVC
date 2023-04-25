@@ -11,17 +11,17 @@
   <meta name="description" content="Web long tìm nhà trọ">
   <meta name="author" content="Nhóm x">
   <meta name="keywords" content="HTML , CSS , SCSS , JavaScript , PHP" >
-  <link rel="stylesheet" href="../assets/boxicons-2.0.7/css/boxicons.min.css">
-  <link rel="stylesheet" href="../assets/css/styles1.css">
+  <link rel="stylesheet" href="./assets/boxicons-2.0.7/css/boxicons.min.css">
+  <link rel="stylesheet" href="./assets/css/styles1.css">
   <title>Trang chủ</title>
 </head>
 <body>
   <?php
-    include '../components/mommom/Header.php';
+    include './components/mommom/Header.php';
   ?>
     <div class="main">
       <?php
-      include '../components/mommom/slider.php';
+      include './components/mommom/slider.php';
       // include '../components/mommom/Navigation.php';
       ?>
       <div class="container">
@@ -31,7 +31,7 @@
             Sản phẩm nhà trọ
           </h3>
         <?php
-          include_once(__DIR__ .'/../controllers/roomController.php');
+          include_once(__DIR__ .'/controllers/roomController.php');
           $roomController = new roomController();
           $roomController();
         ?>
@@ -98,9 +98,9 @@
       </div>
     </div>
   <?php
-    include '../components/mommom/Footer.php'
+    include './components/mommom/Footer.php'
   ?>
   <button onclick="scrollToTop()" id="scroll-to-top">↑</button>
-  <script type="text/javascript" src="../assets/scripts/app1.js"></script>
-  <script src="../assets/scripts/key.js"></script>
+  <script type="text/javascript" src="./assets/scripts/app1.js"></script>
+  <script src="./assets/scripts/key.js"></script>
 </body>

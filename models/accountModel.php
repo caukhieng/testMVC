@@ -1,5 +1,5 @@
 <?php
-    include_once('../libs/database.php');
+    include_once(__DIR__.'/../libs/database.php');
 
 class accountModel
 {
