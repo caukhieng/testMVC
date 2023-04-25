@@ -1,9 +1,9 @@
-<?php 
-    include_once(__DIR__ . '/../models/motelModel.php');
-    class motelView
-    {
-        public function render()
-        {?>
+<?php
+include_once __DIR__ . '/../models/motelModel.php';
+class motelView
+{
+    public function render()
+    {?>
        <div class="container">
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
@@ -36,14 +36,17 @@ class motelController
     {
         $motel = new motelView();
         $motel->render();
-        if(isset($_POST['submit'])){
+        if (isset($_POST['submit'])) {
             $id = $_SESSION['user_idNum'];
             $address = $_POST['address'];
             $des = $_POST['des'];
             $motelModel = new motelModel();
             $result = $motelModel->addMotel($address, $des, $id);
-            if($result) echo '<meta http-equiv="refresh" content="0;url=homepage">';
-            else echo '<meta http-equiv="refresh" content="0;url=notfound">';
+            if ($result) {
+                echo '<meta http-equiv="refresh" content="0;url=homepage">';
+            } else {
+                echo '<meta http-equiv="refresh" content="0;url=notfound">';
+            }
         }
     }
 }

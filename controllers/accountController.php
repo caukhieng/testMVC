@@ -1,13 +1,14 @@
 <?php
-    include_once(__DIR__ . '/../models/accountModel.php');
-    require __DIR__ . '/../vendor/autoload.php';
-    use Dotenv\Dotenv;
-    $dotenv = Dotenv::createImmutable(__DIR__.'/../');
-    $dotenv->load();
-    class accountView
-    {
-        public function render()
-        {?>
+include_once __DIR__ . '/../models/accountModel.php';
+require __DIR__ . '/../vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+class accountView
+{
+    public function render()
+    {?>
         </div>
         <div class="main">
           <div class="container">
@@ -53,47 +54,44 @@ class userController
         $accountView = new accountView();
         $accountView->render();
 
-        if(isset($_POST['submit'])){
+        if (isset($_POST['submit'])) {
             $email = trim($_POST['email']);
             $pattern = '/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/'; // regular expression pattern for email address
             $password = trim($_POST['password']);
             $accountModel = new accountModel();
-            if(!preg_match($pattern, $email)){
-                $errorMessage = "Vui lòng kiểm tra lại email.";
-                echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
+            if (!preg_match($pattern, $email)) {
+                $errorMessage = 'Vui lòng kiểm tra lại email.';
+                echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '{$errorMessage}';</script>";
+
                 return;
             }
             $loginSuccessful = $accountModel->login($email, $password);
-            if($loginSuccessful){
+            if ($loginSuccessful) {
                 $userid = $_SESSION['user_id'];
-                if($_SESSION['user_role'] == 0){
-                    $query = "SELECT * FROM chutro where MaAccount = '$userid'";
+                if ($_SESSION['user_role'] == 0) {
+                    $query = "SELECT * FROM chutro where MaAccount = '{$userid}'";
                     $db = new Database();
                     $user = $db->select($query)->fetch_assoc();
                     $_SESSION['user_name'] = $user['Ten'];
                     $_SESSION['user_idNum'] = $user['MaChuTro'];
                     echo '<meta http-equiv="refresh" content="0;url=homepage">';
-                }
-                else if($_SESSION['user_role'] == 1){
-                    $query = "SELECT * FROM khachtro where MaAccount = '$userid'";
+                } elseif ($_SESSION['user_role'] == 1) {
+                    $query = "SELECT * FROM khachtro where MaAccount = '{$userid}'";
                     $db = new Database();
                     $user = $db->select($query)->fetch_assoc();
                     $_SESSION['user_name'] = $user['Ten'];
                     $_SESSION['user_idNum'] = $user['MaKhachTro'];
-                    echo '<meta http-equiv="refresh" content="0;url='.$_ENV['BASE_URL'].'">';
-
-                }
-                else {
+                    echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['BASE_URL'] . '">';
+                } else {
                     echo '<meta http-equiv="refresh" content="0;url=notfound">';
                 }
-                // $redirect = $_SESSION['user_role'] == 0 ? 'index.php' : 'index.php';
-                // header('Location:' . $redirect);
-                // exit();
+            // $redirect = $_SESSION['user_role'] == 0 ? 'index.php' : 'index.php';
+            // header('Location:' . $redirect);
+            // exit();
             } else {
                 return false;
             }
-        }
-        else {
+        } else {
             // i don't know how to fix this so ok
             // echo "<script language='javascript'>alert('already');</script>";
             return false;

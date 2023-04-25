@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . '/../models/accountModel.php');
+include_once __DIR__ . '/../models/accountModel.php';
 class accountView
 {
     public function render()
@@ -35,32 +35,30 @@ class userController
     {
         $user = new accountView();
         $user->render();
-        if(isset($_POST['submit'])){
+        if (isset($_POST['submit'])) {
             $password = $_POST['password'];
             $passwordconfirm = $_POST['passwordconfirm'];
-             // VALIDATE PASSWORD
-             $uppercase = preg_match('@[A-Z]@', $passwordconfirm);
-             $lowercase = preg_match('@[a-z]@', $passwordconfirm);
-             $number    = preg_match('@[0-9]@', $passwordconfirm);
-             // $specialChars = preg_match('@[^\w]@', $passwordconfirm);
-             // VALIDATE PASSWORD
-             if(!$uppercase || !$lowercase || !$number || strlen($passwordconfirm) < 6) {
-                 $errorMessage = "Mật khẩu phải có ít nhất 6 ký tự, 1 chữ số, 1 chữ hoa";
-                 echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '$errorMessage';</script>";
-             }
-             else if($password === '' || $password !== $passwordconfirm) {
-                 $errorMessage = "Vui lòng kiểm tra lại mật khẩu";
-                 echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '$errorMessage';</script>";
-             }
-             else {
+            // VALIDATE PASSWORD
+            $uppercase = preg_match('@[A-Z]@', $passwordconfirm);
+            $lowercase = preg_match('@[a-z]@', $passwordconfirm);
+            $number = preg_match('@[0-9]@', $passwordconfirm);
+            // $specialChars = preg_match('@[^\w]@', $passwordconfirm);
+            // VALIDATE PASSWORD
+            if (!$uppercase || !$lowercase || !$number || strlen($passwordconfirm) < 6) {
+                $errorMessage = 'Mật khẩu phải có ít nhất 6 ký tự, 1 chữ số, 1 chữ hoa';
+                echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '{$errorMessage}';</script>";
+            } elseif ($password === '' || $password !== $passwordconfirm) {
+                $errorMessage = 'Vui lòng kiểm tra lại mật khẩu';
+                echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '{$errorMessage}';</script>";
+            } else {
                 $email = $_SESSION['user_mail'];
                 $accountModel = new accountModel();
                 $result = $accountModel->updatePassword($email, $password);
-                if($result){
+                if ($result) {
                     // echo "ok";
                     echo '<meta http-equiv="refresh" content="0;url=login">';
                 }
-             }
+            }
         }
     }
 }

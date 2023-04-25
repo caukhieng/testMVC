@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "270798c3631c10fe5d586c3137d18b32",
+    "content-hash": "c009ea4584838081c0f1176901440d70",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -949,6 +949,52 @@
             "time": "2023-03-09T13:19:02+00:00"
         },
         {
+            "name": "jspaetzel/phpstyle",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jspaetzel/phpstyle.git",
+                "reference": "e69295975843fe11473a97377588f9327ab1caf7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jspaetzel/phpstyle/zipball/e69295975843fe11473a97377588f9327ab1caf7",
+                "reference": "e69295975843fe11473a97377588f9327ab1caf7",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "nette/neon": "^3.3",
+                "php": "^7.3|^8.0",
+                "php-cs-fixer/shim": "^3.8"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0 || ^2.0",
+                "ext-json": "*",
+                "friendsofphp/php-cs-fixer": "^3.14",
+                "phpunit/phpunit": "^9"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "PHPStyle\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPStyle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStyle - Make prettier PHP fast",
+            "support": {
+                "issues": "https://github.com/jspaetzel/phpstyle/issues",
+                "source": "https://github.com/jspaetzel/phpstyle/tree/1.6.0"
+            },
+            "time": "2023-02-16T06:04:45+00:00"
+        },
+        {
             "name": "kreait/firebase-php",
             "version": "7.0.0",
             "source": {
@@ -1417,6 +1463,126 @@
                 "source": "https://github.com/jmespath/jmespath.php/tree/2.6.1"
             },
             "time": "2021-06-14T00:11:39+00:00"
+        },
+        {
+            "name": "nette/neon",
+            "version": "v3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/neon.git",
+                "reference": "372d945c156ee7f35c953339fb164538339e6283"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/neon/zipball/372d945c156ee7f35c953339fb164538339e6283",
+                "reference": "372d945c156ee7f35c953339fb164538339e6283",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=8.0 <8.3"
+            },
+            "require-dev": {
+                "nette/tester": "^2.4",
+                "phpstan/phpstan": "^1.0",
+                "tracy/tracy": "^2.7"
+            },
+            "bin": [
+                "bin/neon-lint"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0-only",
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "🍸 Nette NEON: encodes and decodes NEON file format.",
+            "homepage": "https://ne-on.org",
+            "keywords": [
+                "export",
+                "import",
+                "neon",
+                "nette",
+                "yaml"
+            ],
+            "support": {
+                "issues": "https://github.com/nette/neon/issues",
+                "source": "https://github.com/nette/neon/tree/v3.4.0"
+            },
+            "time": "2023-01-13T03:08:29+00:00"
+        },
+        {
+            "name": "php-cs-fixer/shim",
+            "version": "v3.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-CS-Fixer/shim.git",
+                "reference": "5a4bce3d6ea7d90211bb83a245ff5fe4cbc04fce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/5a4bce3d6ea7d90211bb83a245ff5fe4cbc04fce",
+                "reference": "5a4bce3d6ea7d90211bb83a245ff5fe4cbc04fce",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-tokenizer": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "replace": {
+                "friendsofphp/php-cs-fixer": "self.version"
+            },
+            "suggest": {
+                "ext-dom": "For handling output formats in XML",
+                "ext-mbstring": "For handling non-UTF8 characters."
+            },
+            "bin": [
+                "php-cs-fixer",
+                "php-cs-fixer.phar"
+            ],
+            "type": "application",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Dariusz Rumiński",
+                    "email": "dariusz.ruminski@gmail.com"
+                }
+            ],
+            "description": "A tool to automatically fix PHP code style",
+            "support": {
+                "issues": "https://github.com/PHP-CS-Fixer/shim/issues",
+                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.16.0"
+            },
+            "time": "2023-04-02T19:30:55+00:00"
         },
         {
             "name": "phpoption/phpoption",

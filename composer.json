@@ -5,6 +5,13 @@
         "vlucas/phpdotenv": "^5.5",
         "components/font-awesome": "^6.2",
         "twbs/bootstrap": "^5.2",
-        "almasaeed2010/adminlte": "~3.2"
+        "almasaeed2010/adminlte": "~3.2",
+        "jspaetzel/phpstyle": "^1.6",
+        "friendsofphp/php-cs-fixer": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "jspaetzel/phpstyle": true
+        }
     }
 }

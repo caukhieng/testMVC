@@ -1,20 +1,21 @@
 <?php
-  require __DIR__ . '/../../vendor/autoload.php';
-  use Dotenv\Dotenv;
-  $dotenv = Dotenv::createImmutable(__DIR__.'/../../');
-  $dotenv->load();
-  if (isset($_GET['login']) && $_GET['login'] == 'logout') {
+require __DIR__ . '/../../vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
+if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     session_destroy();
-    header('Location:'.$_ENV['BASE_URL']);
+    header('Location:' . $_ENV['BASE_URL']);
     exit;
-  } // use to logout account
+} // use to logout account
 ?>
 <header class="header">
   <div class="header__menu__toggle">
     <i class='bx bx-menu-alt-left' ></i>
   </div>
   <h4 class="header__logo">
-  <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? $_ENV['URL'].'homepage' : $_ENV['BASE_URL']; ?>">
+  <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? $_ENV['URL'] . 'homepage' : $_ENV['BASE_URL']; ?>">
     L<span>ONG</span> N<span>HONG</span>
   </a>
   </h4>
@@ -26,7 +27,7 @@
     <div id="search-results"></div>
   </div>
   <div class="header__action">
-    <?php if(isset($_SESSION['user_name'])): ?>
+    <?php if (isset($_SESSION['user_name'])) { ?>
       <button class="btn btn--cart header__action__btn">
       <a href="?login=logout">
         <i class="bx bxs-user"></i>
@@ -37,17 +38,17 @@
         <i class="bx bxs-user"></i>
         Xác nhận tài khoản
       </a> -->
-    <?php endif; ?>
+    <?php } ?>
     <button class="btn btn--primary header__action__btn">
-      <?php if (isset($_SESSION['user_name'])): ?>
+      <?php if (isset($_SESSION['user_name'])) { ?>
         <a href="user_info">
           <i class="bx bxs-user"></i> <?php echo $_SESSION['user_name']; ?>
         </a>
-      <?php else: ?>
+      <?php } else { ?>
         <a href="<?php echo $_ENV['URL']; ?>login">
           <i class="bx bxs-user"></i> Đăng nhập
         </a>
-      <?php endif; ?>
+      <?php } ?>
   </button>
   </div>
 </header>

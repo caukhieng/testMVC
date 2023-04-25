@@ -1,0 +1,12 @@
+parameters:
+    php: 7.3
+    risky: false
+    paths:
+        - controllers
+        - models
+        - components
+        - libs
+        - tests
+    excludePaths:
+        - src/path/you/want/to/skip
+        - src/or/a/file-to-skip.php

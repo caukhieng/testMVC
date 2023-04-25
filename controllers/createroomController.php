@@ -1,9 +1,9 @@
-<?php 
-    include_once(__DIR__ . '/../models/roomModel.php');
-    class createMotelController
+<?php
+include_once __DIR__ . '/../models/roomModel.php';
+class createMotelController
+{
+    public function render()
     {
-        public function render()
-        {
         ?>
             <div class="container">
                 <div class="center">
@@ -41,16 +41,15 @@
                 </div>
             </div>
 <?php
-        }
     }
+}
 class CreateRoom
 {
     public function __invoke()
     {
         $create = new createMotelController();
         $create->render();
-        if(isset($_POST['submit']))
-        {
+        if (isset($_POST['submit'])) {
             $price = $_POST['price'];
             $size = $_POST['size'];
             $room = $_POST['room'];
@@ -58,9 +57,11 @@ class CreateRoom
             $id = $_GET['idNhaTro'];
             $roomModel = new RoomModel();
             $result = $roomModel->addRoom($id, $des, $price, $size, $room);
-            if($result) echo '<meta http-equiv="refresh" content="0;url=homepage">';
-            else echo '<meta http-equiv="refresh" content="0;url=notfound">';
+            if ($result) {
+                echo '<meta http-equiv="refresh" content="0;url=homepage">';
+            } else {
+                echo '<meta http-equiv="refresh" content="0;url=notfound">';
+            }
         }
     }
 }
-

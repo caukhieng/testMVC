@@ -3,3 +3,4 @@
 /vendor
 /phpversion.php
 /.env
+/.php-cs-fixer.cache

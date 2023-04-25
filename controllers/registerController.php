@@ -1,9 +1,9 @@
-<?php 
-    include_once(__DIR__ . '/../models/accountModel.php');
-    class accountView
-    {
-        public function render()
-        {?>
+<?php
+include_once __DIR__ . '/../models/accountModel.php';
+class accountView
+{
+    public function render()
+    {?>
     <div class="container">
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
@@ -47,61 +47,63 @@
         </div>
     </div>
         <?php
-        }
     }
-    class userController
+}
+class userController
+{
+    public function __invoke()
     {
-        public function __invoke()
-        {
-            $accountView = new accountView();
-            $accountView->render();
-            if(isset($_POST['submit'])){
-                $email = trim($_POST['email']);
-                $password = trim($_POST['password']);
-                $comfirmPassword = trim($_POST['comfirmpassword']);
-                $pattern = '/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/'; // regular expression pattern for email address
-                $role = $_POST['role'];
-                 // VALIDATE PASSWORD
-                $uppercase = preg_match('@[A-Z]@', $comfirmPassword);
-                $lowercase = preg_match('@[a-z]@', $comfirmPassword);
-                $number    = preg_match('@[0-9]@', $comfirmPassword);
-                // $specialChars = preg_match('@[^\w]@', $comfirmPassword);
-                // VALIDATE PASSWORD
-                if(!$uppercase || !$lowercase || !$number || strlen($comfirmPassword) < 6) {
-                    $errorMessage = "Mật khẩu phải có ít nhất 6 ký tự, 1 chữ số, 1 chữ hoa";
-                    echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '$errorMessage';</script>";
-                    return;
-                }
-                if($password === '' || $password !== $comfirmPassword) {
-                    $errorMessage = "Vui lòng kiểm tra lại mật khẩu";
-                    echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '$errorMessage';</script>";
-                    return;
-                }
-                if(!preg_match($pattern, $email)){
-                    $errorMessage = "Vui lòng kiểm tra lại email.";
-                    echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
-                    return;
-                }
-                $accountModel = new accountModel();
-                $check = $accountModel->foundUser($email);
-                if($check){
-                    $errorMessage = "Tài khoản đã tồn tại";
-                    echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
-                    return;
-                }
-                $addUser = $accountModel->register($email, $password, $role);
-                if($addUser){
-                    $_SESSION['user_mail'] = $email;
-                    echo '<meta http-equiv="refresh" content="0;url=verify">'; //going to verify page
-                }
-                else {
-                    echo '<meta http-equiv="refresh" content="0;url=notfound">'; //we're going to brazil
-                }
+        $accountView = new accountView();
+        $accountView->render();
+        if (isset($_POST['submit'])) {
+            $email = trim($_POST['email']);
+            $password = trim($_POST['password']);
+            $comfirmPassword = trim($_POST['comfirmpassword']);
+            $pattern = '/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/'; // regular expression pattern for email address
+            $role = $_POST['role'];
+            // VALIDATE PASSWORD
+            $uppercase = preg_match('@[A-Z]@', $comfirmPassword);
+            $lowercase = preg_match('@[a-z]@', $comfirmPassword);
+            $number = preg_match('@[0-9]@', $comfirmPassword);
+            // $specialChars = preg_match('@[^\w]@', $comfirmPassword);
+            // VALIDATE PASSWORD
+            if (!$uppercase || !$lowercase || !$number || strlen($comfirmPassword) < 6) {
+                $errorMessage = 'Mật khẩu phải có ít nhất 6 ký tự, 1 chữ số, 1 chữ hoa';
+                echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '{$errorMessage}';</script>";
+
+                return;
             }
-            else {
-                // i don't know how to fix this so ok
-                // echo "<script language='javascript'>alert('already');</script>";
-                return false;
+            if ($password === '' || $password !== $comfirmPassword) {
+                $errorMessage = 'Vui lòng kiểm tra lại mật khẩu';
+                echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '{$errorMessage}';</script>";
+
+                return;
             }
+            if (!preg_match($pattern, $email)) {
+                $errorMessage = 'Vui lòng kiểm tra lại email.';
+                echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '{$errorMessage}';</script>";
+
+                return;
+            }
+            $accountModel = new accountModel();
+            $check = $accountModel->foundUser($email);
+            if ($check) {
+                $errorMessage = 'Tài khoản đã tồn tại';
+                echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '{$errorMessage}';</script>";
+
+                return;
+            }
+            $addUser = $accountModel->register($email, $password, $role);
+            if ($addUser) {
+                $_SESSION['user_mail'] = $email;
+                echo '<meta http-equiv="refresh" content="0;url=verify">'; // going to verify page
+            } else {
+                echo '<meta http-equiv="refresh" content="0;url=notfound">'; // we're going to brazil
+            }
+        } else {
+            // i don't know how to fix this so ok
+            // echo "<script language='javascript'>alert('already');</script>";
+            return false;
         }
     }
+}

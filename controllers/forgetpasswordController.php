@@ -1,9 +1,9 @@
-<?php 
-    include_once(__DIR__ . '/../models/accountModel.php');
-    class accountView
-    {
-        public function render()
-        {?>
+<?php
+include_once __DIR__ . '/../models/accountModel.php';
+class accountView
+{
+    public function render()
+    {?>
        <div class="container">
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
@@ -32,13 +32,13 @@ class userController
         $user = new accountView();
         $user->render();
 
-        if(isset($_POST['submit'])){
+        if (isset($_POST['submit'])) {
             $email = $_POST['email'];
             $_SESSION['user_mail'] = $email;
             $accountModel = new accountModel();
             $result = $accountModel->forgetpassword($email);
-            if($result){
-              echo '<meta http-equiv="refresh" content="0;url=verify?forget=yes">';
+            if ($result) {
+                echo '<meta http-equiv="refresh" content="0;url=verify?forget=yes">';
             }
         }
     }

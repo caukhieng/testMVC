@@ -1,9 +1,9 @@
 <?php
-    include_once(__DIR__ . '/../models/accountModel.php');
-    class registerName
-    {
-        public function render()
-        {?>
+include_once __DIR__ . '/../models/accountModel.php';
+class registerName
+{
+    public function render()
+    {?>
         <div class="container">
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
@@ -29,27 +29,27 @@
         </div>
         </div>
           <?php
-        }
     }
-    class registernameController
+}
+class registernameController
+{
+    public function __invoke()
     {
-        public function __invoke()
-        {
-          $registerView = new registerName();
-          $registerView->render();
+        $registerView = new registerName();
+        $registerView->render();
 
-            if(isset($_POST['submit'])){
+        if (isset($_POST['submit'])) {
             $name = trim($_POST['name']);
             $cmnd = $_POST['citizenID'];
             $accountModel = new accountModel();
             $id = $_SESSION['user_id'];
             $result = $accountModel->registerName($id, $name, $cmnd);
-            if($result){
-                /* Redirecting the user to the login page. */
+            if ($result) {
+                // Redirecting the user to the login page.
                 echo '<meta http-equiv="refresh" content="0;url=login">';
             }
         }
-        }
     }
+}
 ?>
 

@@ -1,12 +1,12 @@
 <?php
 
-    include_once(__DIR__ . '/../models/motelModel.php');
-    class configureMotel
+include_once __DIR__ . '/../models/motelModel.php';
+class configureMotel
+{
+    public function render($details)
     {
-        public function render($details)
-        {
-          foreach($details as $row){
-        ?>
+        foreach ($details as $row) {
+            ?>
        <div class="container">
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
@@ -33,38 +33,39 @@
       </div>
               <?php }?>
 <?php
-        }
-  }
+    }
+}
 class configure
 {
     public function __invoke()
     {
-      $id = $_GET['idNhaTro'];
-      $motel = new motelModel();
-      $details = $motel->getDetails($id);
-      $config = new configureMotel();
-      $config->render($details);
+        $id = $_GET['idNhaTro'];
+        $motel = new motelModel();
+        $details = $motel->getDetails($id);
+        $config = new configureMotel();
+        $config->render($details);
 
-      if(isset($_POST['submit']))
-      {
-        $oldAdd = '';
-        $oldDes = '';
-        $newAdd = $_POST['address'];
-        $newDes = $_POST['description'];
-        foreach($details as $row){
-          $oldAdd = $row['DiaChi'];
-          $oldDes = $row['MoTaNhaTro'];
+        if (isset($_POST['submit'])) {
+            $oldAdd = '';
+            $oldDes = '';
+            $newAdd = $_POST['address'];
+            $newDes = $_POST['description'];
+            foreach ($details as $row) {
+                $oldAdd = $row['DiaChi'];
+                $oldDes = $row['MoTaNhaTro'];
+            }
+            if ($oldAdd == $newAdd && $oldDes == $newDes) {
+                $errorMessage = 'Vui lòng kiểm tra lại thông tin đã nhập';
+                echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '{$errorMessage}';</script>";
+                echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '{$errorMessage}';</script>";
+
+                return;
+            }
+            $result = $motel->updateDetails($_GET['idNhaTro'], $newAdd, $newDes);
+            if (!$result) {
+                return;
+            }
+            echo '<meta http-equiv="refresh" content="0;url=homepage">';
         }
-        if($oldAdd == $newAdd && $oldDes == $newDes)
-        {
-          $errorMessage = "Vui lòng kiểm tra lại thông tin đã nhập";
-          echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
-          echo "<script language='javascript'>document.querySelector('#form-1 #password + span.form-message').textContent = '$errorMessage';</script>";
-          return;
-        }
-        $result = $motel->updateDetails($_GET['idNhaTro'], $newAdd, $newDes);
-        if(!$result) return;
-        echo '<meta http-equiv="refresh" content="0;url=homepage">';
-      }
     }
 }

@@ -1,9 +1,9 @@
 <?php
-    include_once(__DIR__ . '/../models/accountModel.php');
-    class verifyView
-    {
-        public function render()
-        {?>
+include_once __DIR__ . '/../models/accountModel.php';
+class verifyView
+{
+    public function render()
+    {?>
         <div class="container">
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
@@ -23,66 +23,64 @@
         </div>
       </div>
           <?php
-        }
     }
-    class verifyController
+}
+class verifyController
+{
+    public function __invoke()
     {
-        public function __invoke()
-        {
-          $verifyView = new verifyView();
-          $verifyView->render();
-          // $db = new Database();
-          if(isset($_POST['submit'])){
-            $checkotp = $_SESSION['otp'];
-            $otp = $_POST['otp']; //get otp from keyboard
-            $email = $_SESSION['user_mail'];
-            if($otp == ''){
-              $errorMessage = "OTP không được để trống";
-              // echo "<script language='javascript'>alert('$errorMessage');</script>";
-              echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '$errorMessage';</script>";
-            } else if($otp == $checkotp) {
-              $accountModel = new accountModel();
-              $result = $accountModel->foundUser($email);
-              if($result){
-                $id = $_SESSION['user_id'];
-                // $queryStrUpdate = "UPDATE `account` SET `verify`=1 WHERE `MaAccount` = $id";
-                $update = $accountModel->updateVerify($email, $id);
-                if($update == true){
-                  echo '<meta http-equiv="refresh" content="0;url=registerName">';
-                }
-              }
-            }
-            else {
-              $errorMessage = "OTP sai!";
-              // echo "<script language='javascript'>alert('$errorMessage');</script>";
-              echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '$errorMessage';</script>";
-            }
-          }
-        }
-    }
-    class verifyPassword
-    {
-      public function __invoke()
-      {
         $verifyView = new verifyView();
         $verifyView->render();
-        if(isset($_POST['submit'])){
-          $checkotp = $_SESSION['otp'];
-          $otp = $_POST['otp']; //get otp from keyboard
-          // $email = $_SESSION['user_mail'];
-          if($otp == ''){
-            $errorMessage = "OTP không được để trống";
-            // echo "<script language='javascript'>alert('$errorMessage');</script>";
-            echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '$errorMessage';</script>";
-          } else if($otp == $checkotp) {
-            echo '<meta http-equiv="refresh" content="0;url=updatepassword">';
-          }
-          else {
-            $errorMessage = "OTP sai!";
-            // echo "<script language='javascript'>alert('$errorMessage');</script>";
-            echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '$errorMessage';</script>";
-          }
+        // $db = new Database();
+        if (isset($_POST['submit'])) {
+            $checkotp = $_SESSION['otp'];
+            $otp = $_POST['otp']; // get otp from keyboard
+            $email = $_SESSION['user_mail'];
+            if ($otp == '') {
+                $errorMessage = 'OTP không được để trống';
+                // echo "<script language='javascript'>alert('$errorMessage');</script>";
+                echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '{$errorMessage}';</script>";
+            } elseif ($otp == $checkotp) {
+                $accountModel = new accountModel();
+                $result = $accountModel->foundUser($email);
+                if ($result) {
+                    $id = $_SESSION['user_id'];
+                    // $queryStrUpdate = "UPDATE `account` SET `verify`=1 WHERE `MaAccount` = $id";
+                    $update = $accountModel->updateVerify($email, $id);
+                    if ($update == true) {
+                        echo '<meta http-equiv="refresh" content="0;url=registerName">';
+                    }
+                }
+            } else {
+                $errorMessage = 'OTP sai!';
+                // echo "<script language='javascript'>alert('$errorMessage');</script>";
+                echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '{$errorMessage}';</script>";
+            }
         }
-      }
     }
+}
+class verifyPassword
+{
+    public function __invoke()
+    {
+        $verifyView = new verifyView();
+        $verifyView->render();
+        if (isset($_POST['submit'])) {
+            $checkotp = $_SESSION['otp'];
+            $otp = $_POST['otp']; // get otp from keyboard
+            // $email = $_SESSION['user_mail'];
+            if ($otp == '') {
+                $errorMessage = 'OTP không được để trống';
+                // echo "<script language='javascript'>alert('$errorMessage');</script>";
+                echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '{$errorMessage}';</script>";
+            } elseif ($otp == $checkotp) {
+                echo '<meta http-equiv="refresh" content="0;url=updatepassword">';
+            } else {
+                $errorMessage = 'OTP sai!';
+                // echo "<script language='javascript'>alert('$errorMessage');</script>";
+                echo "<script language='javascript'>document.querySelector('#form-1 #otp + span.form-message').textContent = '{$errorMessage}';</script>";
+            }
+        }
+    }
+}
 ?>

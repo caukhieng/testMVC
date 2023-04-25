@@ -1,12 +1,12 @@
 <?php
 
-    include_once(__DIR__ . '/../models/roomModel.php');
-    class configureHotel
+include_once __DIR__ . '/../models/roomModel.php';
+class configureHotel
+{
+    public function render($details)
     {
-        public function render($details)
-        {
-        foreach($details as $row){
-        ?>
+        foreach ($details as $row) {
+            ?>
         <div class="container">
           <div class="center">
             <form action="" method="POST" class="form" id="form-1">
@@ -17,7 +17,7 @@
 
               <div class="form-group">
               <label for="email" class="form-label">Giá thuê (VNĐ)</label>
-              <input id="email" name="price" type="text" placeholder="VD: 300000" class="form-control" value="<?php echo $row['GiaThue'] ?>" required autofocus>
+              <input id="email" name="price" type="text" placeholder="VD: 300000" class="form-control" value="<?php echo $row['GiaThue']; ?>" required autofocus>
               <span class="form-message"></span>
               </div>
 
@@ -44,45 +44,46 @@
         </div>
     <?php }?>
 <?php
-        }
-  }
+    }
+}
 class configure
 {
     public function __invoke()
     {
-      $id = $_GET['idPhongTro'];
-      $roomModel = new roomModel();
-      $details = $roomModel->getRoomDebug($id);
-      $config = new configureHotel();
-      $config->render($details);
+        $id = $_GET['idPhongTro'];
+        $roomModel = new roomModel();
+        $details = $roomModel->getRoomDebug($id);
+        $config = new configureHotel();
+        $config->render($details);
 
-      if(isset($_POST['submit']))
-      {
-        /* These lines of code are retrieving the values submitted through a form using the POST method
-        and assigning them to variables. The values are retrieved based on the name attribute of the
-        input fields in the form. In this case, the variables are named , , , and
-        , and they correspond to the values entered in the form fields with the names
-        "price", "size", "room", and "des", respectively. */
-        $price = $_POST['price'];
-        $size = $_POST['size'];
-        $room = $_POST['room'];
-        $description = $_POST['des'];
+        if (isset($_POST['submit'])) {
+            /* These lines of code are retrieving the values submitted through a form using the POST method
+            and assigning them to variables. The values are retrieved based on the name attribute of the
+            input fields in the form. In this case, the variables are named , , , and
+            , and they correspond to the values entered in the form fields with the names
+            "price", "size", "room", and "des", respectively. */
+            $price = $_POST['price'];
+            $size = $_POST['size'];
+            $room = $_POST['room'];
+            $description = $_POST['des'];
 
-        foreach($details as $row){
-          $oldPrice = $row['GiaThue'];
-          $oldSize = $row['DienTich'];
-          $oldRoom = $row['SoPhong'];
-          $oldDes = $row['MoTaPhongTro'];
+            foreach ($details as $row) {
+                $oldPrice = $row['GiaThue'];
+                $oldSize = $row['DienTich'];
+                $oldRoom = $row['SoPhong'];
+                $oldDes = $row['MoTaPhongTro'];
+            }
+            if ($oldPrice == $price && $oldSize == $size && $oldRoom == $room && $oldDes == $description) {
+                $errorMessage = 'Vui lòng kiểm tra lại thông tin đã nhập';
+                echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '{$errorMessage}';</script>";
+
+                return;
+            }
+            $result = $roomModel->updateRoom($id, $description, $price, $size, $room);
+            if (!$result) {
+                return;
+            }
+            echo '<meta http-equiv="refresh" content="0;url=homepage">';
         }
-        if($oldPrice == $price && $oldSize == $size && $oldRoom == $room && $oldDes == $description)
-        {
-          $errorMessage = "Vui lòng kiểm tra lại thông tin đã nhập";
-          echo "<script language='javascript'>document.querySelector('#form-1 #email + span.form-message').textContent = '$errorMessage';</script>";
-          return;
-        }
-        $result = $roomModel->updateRoom($id, $description, $price, $size, $room);
-        if(!$result) return;
-        echo '<meta http-equiv="refresh" content="0;url=homepage">';
-      }
     }
 }

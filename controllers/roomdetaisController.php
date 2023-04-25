@@ -1,46 +1,47 @@
-<?php 
-    include_once(__DIR__ . '/../models/motelModel.php');
-    include_once(__DIR__ . '/../models/roomModel.php');
-    require __DIR__ . '/../vendor/autoload.php';
-    use Dotenv\Dotenv;
-    $dotenv = Dotenv::createImmutable(__DIR__.'/../');
-    $dotenv->load();
-    class detailsMotel
+<?php
+include_once __DIR__ . '/../models/motelModel.php';
+include_once __DIR__ . '/../models/roomModel.php';
+require __DIR__ . '/../vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+class detailsMotel
+{
+    public function render($details)
     {
-        public function render($details)
-        {
         ?>
       <div class="container">
         <h2 class="title__section">
           Chi tiết nhà trọ
         </h2>
         <?php
-            foreach($details as $row){
-        ?>
+            foreach ($details as $row) {
+                ?>
           <div class="details__product">
                 <div class="details__product__left">
                   <div class="details__product__left__img">
                     <?php
-                  if (!empty($row['url'])) {
-                      echo '<img src="' . $row['url'] . '" alt="">';
-                  } else {
-                      echo '<img src="https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/images%2FMotel-Nacht.webp?alt=media&token=8ae8f91f-2adc-44a5-8928-9a3009ed84fe" alt="">';
-                  }
-                  ?>
+                          if (!empty($row['url'])) {
+                              echo '<img src="' . $row['url'] . '" alt="">';
+                          } else {
+                              echo '<img src="https://firebasestorage.googleapis.com/v0/b/project-motel.appspot.com/o/images%2FMotel-Nacht.webp?alt=media&token=8ae8f91f-2adc-44a5-8928-9a3009ed84fe" alt="">';
+                          }
+                ?>
                   </div>
                 </div>
               <div class="details__product__right">
                   <h3 class="details__product__right__title">
-                    <?php echo $row['DiaChi'] ?>
+                    <?php echo $row['DiaChi']; ?>
                   </h3>
-                    <?php $id = $_GET['idNhaTro'];?>
-                    <a href="<?php echo $_ENV['URL']; ?>createroom?idNhaTro=<?php echo $id;?>">
+                    <?php $id = $_GET['idNhaTro']; ?>
+                    <a href="<?php echo $_ENV['URL']; ?>createroom?idNhaTro=<?php echo $id; ?>">
                       <button type="submit" name="submit" class="btn btn--add">
                       <i class='bx bx-shopping-bag' ></i>
                       Thêm phòng trọ
                       </button>
                     </a>
-                    <a href="<?php echo $_ENV['URL']; ?>configuremotel?idNhaTro=<?php echo $id;?>">
+                    <a href="<?php echo $_ENV['URL']; ?>configuremotel?idNhaTro=<?php echo $id; ?>">
                       <button type="submit" name="submit" class="btn btn--add">
                       <i class='bx bx-shopping-bag' ></i>
                       Chỉnh sửa nhà trọ
@@ -57,7 +58,7 @@
               <div class="description">
                 <h4 class="heading">Mô tả</h4>
                 <p class="desc">
-                  <?php echo nl2br($row['MoTaNhaTro']);?>
+                  <?php echo nl2br($row['MoTaNhaTro']); ?>
                 </p>
               </div>
               <?php }?>
@@ -65,12 +66,12 @@
         </div>
       </div>
 <?php
-        }
-      }
-    class roomDetails
-    {
-      public function render($room)
-      {?>
+    }
+}
+class roomDetails
+{
+    public function render($room)
+    {?>
         <div class="container">
           <div class="product">
             <h3 class="heading">
@@ -79,31 +80,31 @@
             </h3>
             <div class="product__container">
               <?php
-              if(is_null($room)):
-                echo 'Bạn chưa có nhà trọ';?>
+            if (is_null($room)) {
+                echo 'Bạn chưa có nhà trọ'; ?>
               </div>
               <?php
                 return;
-              endif ?>
+            } ?>
                 <div class="product__item">
                   <div class="product__item__img">
-                    <?php foreach($room as $item): ?>
-                      <a href="<?php echo $_ENV['URL']; ?>indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&idPhongTro=<?php echo $item['MaPhongTro'];?>">
+                    <?php foreach ($room as $item) { ?>
+                      <a href="<?php echo $_ENV['URL']; ?>indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&idPhongTro=<?php echo $item['MaPhongTro']; ?>">
                           <img src="<?php echo $item['url'] ? $item['url'] : 'https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg'; ?>" alt="">
                       </a>
-                      <?php endforeach; ?>
+                      <?php } ?>
                   </div>
 
                     <h4 class="product__item__title">
-                      <a href="<?php echo $_ENV['URL']; ?>indetails?idNhaTro=<?php echo $_GET['idNhaTro'];?>&idPhongTro=<?php echo $item['MaPhongTro'];?>">
-                        <?php echo $item['SoPhong'];?>
+                      <a href="<?php echo $_ENV['URL']; ?>indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&idPhongTro=<?php echo $item['MaPhongTro']; ?>">
+                        <?php echo $item['SoPhong']; ?>
                       </a>
                     </h4>
                   </div>
           </div>
 <?php
-      }
     }
+}
 class detailsMotelController
 {
     public function __invoke()
@@ -117,12 +118,12 @@ class detailsMotelController
 }
 class room
 {
-  public function __invoke()
-  {
-    $id = $_GET['idNhaTro'];
-    $getRoom = new RoomModel();
-    $yes = $getRoom->getRoom($id);
-    $room = new roomDetails();
-    $room->render($yes);
-  }
+    public function __invoke()
+    {
+        $id = $_GET['idNhaTro'];
+        $getRoom = new RoomModel();
+        $yes = $getRoom->getRoom($id);
+        $room = new roomDetails();
+        $room->render($yes);
+    }
 }

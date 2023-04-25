@@ -1,9 +1,10 @@
 <?php
-  include_once(__DIR__ . '/../models/roomModel.php');
-  require __DIR__ . '/../vendor/autoload.php';
-  use Dotenv\Dotenv;
-  $dotenv = Dotenv::createImmutable(__DIR__.'/../');
-  $dotenv->load();
+include_once __DIR__ . '/../models/roomModel.php';
+require __DIR__ . '/../vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 class detailsView
 {
     public function render($get)
@@ -12,21 +13,21 @@ class detailsView
         <h2 class="title__section">
           Chi tiết phòng trọ
         </h2>
-        <?php foreach($get as $row){?>
+        <?php foreach ($get as $row) {?>
         <div class="details__product">
-          <?php if(!empty($row['url'])): ?>
+          <?php if (!empty($row['url'])) { ?>
             <div class="details__product__left">
               <div class="details__product__left__img">
                 <img src="<?php echo $row['url']; ?>" alt="">
               </div>
             </div>
-          <?php else: ?>
+          <?php } else { ?>
             <div class="details__product__left">
               <div class="details__product__left__img">
                 <img src="https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg" alt="">
               </div>
             </div>
-          <?php endif; ?>
+          <?php } ?>
             <div class="details__product__right">
                 <h3 class="details__product__right__title">
                   <?php echo $row['SoPhong']; ?>
@@ -39,7 +40,7 @@ class detailsView
                   <span>Diện tích: </span>
                   <?php echo $row['DienTich']; ?>
                 </h4>
-                <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0): ?>
+                <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) { ?>
                   <a href="<?php echo $_ENV['URL']; ?>configureroom?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
                     <button type="submit" name="submit" class="btn btn--add">
                     <i class='bx bx-shopping-bag' ></i>
@@ -58,14 +59,14 @@ class detailsView
                     Thêm hình ảnh phòng
                     </button>
                   </a> -->
-                <?php else: ?>
+                <?php } else { ?>
                   <a href="../views/NotFound">
                     <button type="submit" name="submit" class="btn btn--add">
                     <i class='bx bx-shopping-bag' ></i>
                     Đặt phòng
                     </button>
                   </a>
-                <?php endif;?>
+                <?php }?>
               </div>
             </div>
             <div class="description">
@@ -77,11 +78,11 @@ class detailsView
             <?php }?>
           <div class="product">
             <h3 class="heading">
-              <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0): ?>
-              <?php else: ?>
+              <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) { ?>
+              <?php } else { ?>
                   <i class="bx bx-cart-alt"></i>
                   Gợi ý
-                    <?php endif;?>
+                    <?php }?>
                   </h3>
                   <div class="product__container">
                     <!-- <div class="product__item">
@@ -111,9 +112,9 @@ class detailsController
 {
     public function __invoke()
     {
-      $roomModel = new RoomModel();
-      $get = $roomModel->getRoomDebug($_GET['idPhongTro']);
-      $detailView = new detailsView();
-      $detailView->render($get);
+        $roomModel = new RoomModel();
+        $get = $roomModel->getRoomDebug($_GET['idPhongTro']);
+        $detailView = new detailsView();
+        $detailView->render($get);
     }
 }
