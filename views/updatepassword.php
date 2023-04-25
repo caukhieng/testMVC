@@ -11,9 +11,9 @@
   <meta name="description" content="Web tìm nhà trọ">
   <meta name="author" content="Nhóm x">
   <meta name="keywords" content="HTML , CSS , SCSS , JavaScript , PHP" >
-  <link rel="stylesheet" href="../assets/boxicons-2.0.7/css/boxicons.min.css">
-  <link rel="stylesheet" href="../assets/css/styles.css">
-  <link rel="stylesheet" href="../assets/css/user.css">
+  <link rel="stylesheet" href="assets/boxicons-2.0.7/css/boxicons.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/user.css">
   <title>Đặt lại mật khẩu</title>
   
 </head>
@@ -32,5 +32,5 @@
   <?php 
     include '../components/mommom/Footer.php'
   ?>
-  <script type="text/javascript" src="../assets/scripts/app1.js"></script>
+  <script type="text/javascript" src="assets/scripts/app1.js"></script>
 </body>

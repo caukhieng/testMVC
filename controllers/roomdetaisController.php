@@ -82,26 +82,27 @@ class roomDetails
               <?php
             if (is_null($room)) {
                 echo 'Bạn chưa có nhà trọ'; ?>
-              </div>
+            </div>
               <?php
                 return;
-            } ?>
+            }   ?>
+                  <?php foreach ($room as $item) { ?>
                 <div class="product__item">
                   <div class="product__item__img">
-                    <?php foreach ($room as $item) { ?>
                       <a href="<?php echo $_ENV['URL']; ?>indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&idPhongTro=<?php echo $item['MaPhongTro']; ?>">
                           <img src="<?php echo $item['url'] ? $item['url'] : 'https://viatravelers.com/wp-content/uploads/2021/01/single-hotel-room.jpg'; ?>" alt="">
                       </a>
-                      <?php } ?>
-                  </div>
-
                     <h4 class="product__item__title">
                       <a href="<?php echo $_ENV['URL']; ?>indetails?idNhaTro=<?php echo $_GET['idNhaTro']; ?>&idPhongTro=<?php echo $item['MaPhongTro']; ?>">
                         <?php echo $item['SoPhong']; ?>
                       </a>
                     </h4>
-                  </div>
-          </div>
+                </div>
+              </div>
+              <?php } ?>
+            </div>
+        </div>
+      </div>
 <?php
     }
 }

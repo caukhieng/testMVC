@@ -1,11 +1,13 @@
 # Enable the mod_rewrite module
 RewriteEngine On
 
-# Check if the requested URL is not a directory
+# Rewrite rules for the admin section
+RewriteCond %{REQUEST_URI} ^/phpmvc/admin [NC]
+# Route requests to the admin section
+RewriteRule .* views/admin/index.php [L,QSA]
+
+# Rewrite rules for all other requests
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# Check if adding ".php" to the end of the URL results in a valid file
-RewriteCond %{REQUEST_FILENAME}.php -f
-
-# Rewrite the URL to include ".php" and hide it from the address bar
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
+RewriteCond %{DOCUMENT_ROOT}/phpmvc/views/$1.php -f
+RewriteRule ^(.+)$ /phpmvc/views/$1.php [L,QSA]

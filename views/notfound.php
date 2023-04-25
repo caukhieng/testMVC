@@ -6,8 +6,8 @@
   <meta name="description" content="Web tìm trọ nè">
   <meta name="author" content="Nhóm x">
   <meta name="keywords" content="HTML , CSS , SCSS , JavaScript , PHP" >
-  <link rel="stylesheet" href="../assets/boxicons-2.0.7/css/boxicons.min.css">
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="asssets/boxicons-2.0.7/css/boxicons.min.css">
+  <link rel="stylesheet" href="asssets/css/styles.css">
   <title>Not Found</title>
 </head>
 <body>
@@ -38,5 +38,5 @@
     include '../components/mommom/Footer.php'
   ?>
 
-  <script type="text/javascript" src="../assets/scripts/app1.js"></script>
+  <script type="text/javascript" src="asssets/scripts/app1.js"></script>
 </body>
