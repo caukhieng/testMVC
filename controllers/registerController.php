@@ -4,7 +4,7 @@
     {
         public function render()
         {?>
-           <div class="container">
+    <div class="container">
         <div class="center">
           <form action="" method="POST" class="form" id="form-1">
             <h3 class="heading">Thành viên đăng ký</h3>
@@ -45,6 +45,7 @@
             <a href="login" class="register">Đăng nhập tại đây</a><br>
           </form>
         </div>
+    </div>
         <?php
         }
     }

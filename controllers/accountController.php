@@ -1,5 +1,9 @@
-<?php 
+<?php
     include_once(__DIR__ . '/../models/accountModel.php');
+    require __DIR__ . '/../vendor/autoload.php';
+    use Dotenv\Dotenv;
+    $dotenv = Dotenv::createImmutable(__DIR__.'/../');
+    $dotenv->load();
     class accountView
     {
         public function render()
@@ -76,7 +80,7 @@ class userController
                     $user = $db->select($query)->fetch_assoc();
                     $_SESSION['user_name'] = $user['Ten'];
                     $_SESSION['user_idNum'] = $user['MaKhachTro'];
-                    echo '<meta http-equiv="refresh" content="0;url=index">';
+                    echo '<meta http-equiv="refresh" content="0;url='.$_ENV['BASE_URL'].'">';
 
                 }
                 else {

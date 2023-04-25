@@ -1,6 +1,9 @@
 <?php
-include_once(__DIR__ . '/../models/roomModel.php');
-
+  include_once(__DIR__ . '/../models/roomModel.php');
+  require __DIR__ . '/../vendor/autoload.php';
+  use Dotenv\Dotenv;
+  $dotenv = Dotenv::createImmutable(__DIR__.'/../');
+  $dotenv->load();
 class detailsView
 {
     public function render($get)
@@ -37,13 +40,13 @@ class detailsView
                   <?php echo $row['DienTich']; ?>
                 </h4>
                 <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0): ?>
-                  <a href="../views/configureroom?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
+                  <a href="<?php echo $_ENV['URL']; ?>configureroom?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
                     <button type="submit" name="submit" class="btn btn--add">
                     <i class='bx bx-shopping-bag' ></i>
                     Chỉnh sửa thông tin phòng
                     </button>
                   </a>
-                  <a href="../views/configureimage?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
+                  <a href="<?php echo $_ENV['URL']; ?>configureimage?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
                     <button type="submit" name="submit" class="btn btn--add">
                     <i class='bx bx-shopping-bag' ></i>
                     Chỉnh sửa hình ảnh

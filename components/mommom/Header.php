@@ -1,29 +1,20 @@
 <?php
+  require __DIR__ . '/../../vendor/autoload.php';
+  use Dotenv\Dotenv;
+  $dotenv = Dotenv::createImmutable(__DIR__.'/../../');
+  $dotenv->load();
   if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     session_destroy();
-    header('Location: index');
+    header('Location:'.$_ENV['BASE_URL']);
     exit;
   } // use to logout account
-?>
-<?php
-if (isset($_POST['searchValue'])) {
-  include_once('../models/roomModel');
-  $searchValue = $_POST['searchValue'];
-  $roomModel = new RoomModel();
-  $rooms = $roomModel->findRoom($searchValue);
-  if (!$rooms) {
-    echo json_encode(['error' => 'No results found']);
-    return;
-  }
-    echo json_encode($rooms);
-}
 ?>
 <header class="header">
   <div class="header__menu__toggle">
     <i class='bx bx-menu-alt-left' ></i>
   </div>
   <h4 class="header__logo">
-  <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? 'homepage' : 'index'; ?>">
+  <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? $_ENV['URL'].'homepage' : $_ENV['BASE_URL']; ?>">
     L<span>ONG</span> N<span>HONG</span>
   </a>
   </h4>
@@ -53,7 +44,7 @@ if (isset($_POST['searchValue'])) {
           <i class="bx bxs-user"></i> <?php echo $_SESSION['user_name']; ?>
         </a>
       <?php else: ?>
-        <a href="login">
+        <a href="<?php echo $_ENV['URL']; ?>login">
           <i class="bx bxs-user"></i> Đăng nhập
         </a>
       <?php endif; ?>

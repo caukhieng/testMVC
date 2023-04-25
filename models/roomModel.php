@@ -1,6 +1,6 @@
 <?php
-    include_once('../libs/database.php');
-    include_once('../models/pictureModel.php');
+    include_once(__DIR__.'/../libs/database.php');
+    include_once(__DIR__.'/../models/pictureModel.php');
 class roomModel
 {
   private $db;

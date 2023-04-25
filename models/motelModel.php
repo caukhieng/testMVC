@@ -1,6 +1,6 @@
 <?php
-    include_once('../libs/database.php');
-    include_once('../models/roomModel.php');
+    include_once(__DIR__.'/../libs/database.php');
+    include_once(__DIR__.'/../models/roomModel.php');
 
 class motelModel
 {
