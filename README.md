@@ -24,7 +24,7 @@ blog to the most popular websites in the world. PHP is distributed under the
 The PHP manual is available at [php.net/docs](https://php.net/docs).
 
 ## Installation
-Using XAMPP to install PHP version 8.2.4 +
+Using XAMPP to install PHP version ">= 8.2.0"
 Clone the project with
 
     git clone https://github.com/ItsaMeChun/phpmvc.git
