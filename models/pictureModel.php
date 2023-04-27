@@ -1,6 +1,5 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
 include_once __DIR__ . '/../libs/database.php';
 
 use Kreait\Firebase\Factory;

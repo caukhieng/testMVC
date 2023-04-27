@@ -10,13 +10,23 @@ RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1 [F,L]
 # Redirect to admin section when a POST request is made
 RewriteCond %{REQUEST_URI} ^/phpmvc/admin [NC]
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1 [L]
+RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1.php [L]
+
+# Redirect API requests to the api folder
+RewriteCond %{REQUEST_URI} ^/phpmvc/api [NC]
+RewriteRule ^api/(.*)$ /phpmvc/views/api/$1.php [L]
 
 # Rewrite rules for all other requests
+RewriteCond %{REQUEST_URI} !^/phpmvc/(admin|api) [NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{DOCUMENT_ROOT}/phpmvc/views/$1.php -f
-RewriteRule ^(.+)$ /phpmvc/views/$1.php [L,QSA]
+RewriteRule ^(.*)$ /phpmvc/views/$1.php [L,QSA]
+
+# Rewrite rule for admin section requests
+RewriteCond %{REQUEST_URI} ^/phpmvc/admin [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1.php [L,QSA]
 
 # Custom error pages
 ErrorDocument 400 /phpmvc/errors/400.php

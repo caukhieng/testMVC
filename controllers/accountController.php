@@ -1,10 +1,6 @@
 <?php
 include_once __DIR__ . '/../models/accountModel.php';
-require __DIR__ . '/../vendor/autoload.php';
-use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
 class accountView
 {
     public function render()

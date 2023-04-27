@@ -1,6 +1,9 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
 include $filepath . '/../config/config.php';
+require __DIR__ . '/../vendor/autoload.php';
+use Dotenv\Dotenv;
+
 ?>
 
 <?php
@@ -10,16 +13,21 @@ include $filepath . '/../config/config.php';
       public $user = DB_USER;
       public $pass = DB_PASS;
       public $dbname = DB_NAME;
-      public $APP_MAIL = APP_MAIL;
-      public $APP_PASS = APP_PASS;
-      public $SECRET = SECRET;
+      public $APP_MAIL;
+      public $APP_PASS;
+      public $SECRET;
 
       public $link;
       public $error;
 
       public function __construct()
       {
+          $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+          $dotenv->load();
           $this->connectDB();
+          $this->APP_MAIL = $_ENV['APP_MAIL_KEY'];
+          $this->APP_PASS = $_ENV['APP_PASS_KEY'];
+          $this->SECRET = $_ENV['SECRET_KEY'];
       }
 
       public function selectWithoutDebug($query)
