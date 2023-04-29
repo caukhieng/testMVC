@@ -70,7 +70,7 @@ class pictureModel
     public function getAllImageDatabase($id)
     {
         $query = "SELECT * FROM `picture` WHERE MaPhongTro = {$id}";
-        $result = $this->db->select($query);
+        $result = $this->db->selectWithoutDebug($query);
         if (!$result) {
             return false;
         }

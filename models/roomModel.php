@@ -66,9 +66,20 @@ class roomModel
         $query = "SELECT phongtro.*, picture.url
               FROM phongtro
               LEFT JOIN picture ON phongtro.MaPhongTro = picture.MaPhongTro
-              WHERE phongtro.MaPhongTro = '{$id}'
+              WHERE phongtro.MaPhongTro = {$id}
               ORDER BY RAND()
               LIMIT 1";
+        $result = $this->db->select($query);
+        if (!$result) {
+            return null;
+        }
+
+        return $result;
+    }
+
+    public function getRoomInfo($id)
+    {
+        $query = "SELECT * FROM phongtro where MaPhongTro = {$id}";
         $result = $this->db->select($query);
         if (!$result) {
             return null;
@@ -108,6 +119,21 @@ class roomModel
               FROM phongtro pt
               JOIN nhatro nt ON pt.MaNhaTro = nt.MaNhaTro
               WHERE nt.DiaChi LIKE '%{$searchValue}%'";
+        $result = $this->db->select($query);
+        if (!$result) {
+            return false;
+        }
+
+        return $result;
+    }
+
+    public function getRoomWithName($id)
+    {
+        $query = "SELECT phongtro.*, chutro.MaChuTro, chutro.Ten
+        FROM phongtro
+        JOIN nhatro ON phongtro.MaNhaTro = nhatro.MaNhaTro
+        JOIN chutro ON nhatro.MaChuTro = chutro.MaChuTro
+        WHERE phongtro.MaPhongTro = {$id}";
         $result = $this->db->select($query);
         if (!$result) {
             return false;

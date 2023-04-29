@@ -14,13 +14,12 @@ class uploadImageController
                     <div action="">
                         <h3 class="heading">Chỉnh sửa hình ảnh </h3>
                     </div>
-
                     <a href="<?php echo $_ENV['URL']; ?>addimage?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
                         <button class="btn btn--add" style="float:right;">
                             Thêm hình ảnh
                         </button>
                     </a>
-            </div>
+                </div>
                 <table class="table" style="margin:auto;outline:auto">
                     <tr>
                         <th style="padding: 30px; outline: auto">
@@ -30,7 +29,9 @@ class uploadImageController
                             Chức năng
                         </th>
                     </tr>
-                    <?php foreach ($data as $item) { ?>
+                    <?php
+                    if (!empty($data)) {
+                        foreach ($data as $item) { ?>
                     <tr>
                         <th style="padding: 30px; outline: auto">
                             <img src="<?php echo $item['url']; ?>" alt="" srcset="">
@@ -48,6 +49,7 @@ class uploadImageController
                         </th>
                     </tr>
                 <?php } ?>
+                <?php }?>
                 </table>
             </div>
         </div>

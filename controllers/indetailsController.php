@@ -53,18 +53,16 @@ class detailsView
                     Chỉnh sửa hình ảnh
                     </button>
                   </a>
-                  <!-- <a href="../views/addimage.php?idPhongTro=<?php echo $_GET['idPhongTro']; ?>">
-                    <button type="submit" name="submit" class="btn btn--add">
-                    <i class='bx bx-shopping-bag' ></i>
-                    Thêm hình ảnh phòng
-                    </button>
-                  </a> -->
                 <?php } else { ?>
-                  <a href="../views/NotFound">
-                    <button type="submit" name="submit" class="btn btn--add">
-                    <i class='bx bx-shopping-bag' ></i>
-                    Đặt phòng
-                    </button>
+                  <?php if (isset($_SESSION['user_id'])) { ?>
+                  <a href = "<?php echo $_ENV['URL']; ?>rentalcontract?idPhongTro=<?php echo $_GET['idPhongTro']; ?>"
+                  <?php } else { ?>
+                   <a href = "<?php echo $_ENV['URL']; ?>login?idPhongTro=<?php echo $_GET['idPhongTro']; ?>&rent=true">
+                  <?php } ?>
+                      <button type="submit" name="submit" class="btn btn--add">
+                      <i class='bx bx-shopping-bag' ></i>
+                      Đặt phòng
+                      </button>
                   </a>
                 <?php }?>
               </div>

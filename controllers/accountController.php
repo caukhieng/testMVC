@@ -70,14 +70,18 @@ class userController
                     $user = $db->select($query)->fetch_assoc();
                     $_SESSION['user_name'] = $user['Ten'];
                     $_SESSION['user_idNum'] = $user['MaChuTro'];
-                    echo '<meta http-equiv="refresh" content="0;url=homepage">';
+                    echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . 'homepage">';
                 } elseif ($_SESSION['user_role'] == 1) {
                     $query = "SELECT * FROM khachtro where MaAccount = '{$userid}'";
                     $db = new Database();
                     $user = $db->select($query)->fetch_assoc();
                     $_SESSION['user_name'] = $user['Ten'];
                     $_SESSION['user_idNum'] = $user['MaKhachTro'];
-                    echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . '">';
+                    if (isset($_GET['rent']) && $_GET['rent'] == true) {
+                        echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . 'rentalcontract?idPhongTro=' . $_GET['idPhongTro'] . '">';
+                    } else {
+                        echo '<meta http-equiv="refresh" content="0;url=' . $_ENV['URL'] . '">';
+                    }
                 } else {
                     echo '<meta http-equiv="refresh" content="0;url=notfound">';
                 }

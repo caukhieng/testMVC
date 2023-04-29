@@ -10,7 +10,7 @@ RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1 [F,L]
 # Redirect to admin section when a POST request is made
 RewriteCond %{REQUEST_URI} ^/phpmvc/admin [NC]
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1.php [L]
+RewriteRule ^admin/(.*)$ /phpmvc/views/admin/$1 [L]
 
 # Redirect API requests to the api folder
 RewriteCond %{REQUEST_URI} ^/phpmvc/api [NC]
