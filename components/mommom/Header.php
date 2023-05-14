@@ -16,7 +16,8 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
   </div>
   <h4 class="header__logo">
   <a href="<?php echo isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0 ? $_ENV['URL'] . 'homepage' : $_ENV['URL']; ?>">
-    L<span>ONG</span> N<span>HONG</span>
+    <!-- L<span>ONG</span> N<span>HONG</span> -->
+    <img src="assets/images/StayScore.jpg" style="width:110px;"></img>
   </a>
   </h4>
   <div class="header__search">
@@ -27,6 +28,34 @@ if (isset($_GET['login']) && $_GET['login'] == 'logout') {
     <div id="search-results"></div>
   </div>
   <div class="header__action">
+    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 1) { ?>
+    <button class="btn btn--cart header__action__btn">
+      <a href="<?php echo $_ENV['URL']; ?>history">
+        Lịch Sử
+      </a> 
+    </button>
+    <button class="btn btn--cart header__action__btn">
+      <a href="<?php echo $_ENV['URL']; ?>transaction">
+        Đặt Phòng
+      </a>
+    </button>
+    <button class="btn btn--cart header__action__btn">
+      <a href="<?php echo $_ENV['URL']; ?>userpage">
+        Đánh Giá
+      </a>
+    </button>
+    <?php }
+    elseif(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0){?>
+      <button class="btn btn--cart header__action__btn">
+        <a href="<?php echo $_ENV['URL']; ?>landlordpage">
+          Đánh Giá
+        </a>
+      </button>
+    <?} 
+    else { ?>
+
+    <?php } ?>
+
     <?php if (isset($_SESSION['user_name'])) { ?>
       <button class="btn btn--cart header__action__btn">
       <a href="?login=logout">

@@ -61,7 +61,9 @@ class userController
 
                 return;
             }
-            $loginSuccessful = $accountModel->login($email, $password);
+            $role = $_POST['role'];
+            $_SESSION['user_role'] = $_POST['role'];
+            $loginSuccessful = $accountModel->login($email, $password,$role);
             if ($loginSuccessful) {
                 $userid = $_SESSION['user_id'];
                 if ($_SESSION['user_role'] == 0) {
@@ -75,6 +77,7 @@ class userController
                     $query = "SELECT * FROM khachtro where MaAccount = '{$userid}'";
                     $db = new Database();
                     $user = $db->select($query)->fetch_assoc();
+                    // $user = $db->select($query);
                     $_SESSION['user_name'] = $user['Ten'];
                     $_SESSION['user_idNum'] = $user['MaKhachTro'];
                     if (isset($_GET['rent']) && $_GET['rent'] == true) {

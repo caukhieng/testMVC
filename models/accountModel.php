@@ -30,9 +30,9 @@ class accountModel
         return false;
     }
 
-    public function login($email, $password)
-    {
-        $query = "SELECT * FROM account WHERE Email = '{$email}' LIMIT 1";
+    public function login($email, $password, $role){
+    //  LIMIT 1
+        $query = "SELECT * FROM account WHERE Email = '{$email}' and role='{$role}'";
         $result = $this->db->select($query);
         if (!$result) {
             return false;
@@ -44,7 +44,7 @@ class accountModel
         }
         $_SESSION['user_id'] = $user['MaAccount'];
         $_SESSION['user_email'] = $user['Email'];
-        $_SESSION['user_role'] = $user['role'];
+        //$_SESSION['user_role'] = $user['role'];
 
         return true;
     }

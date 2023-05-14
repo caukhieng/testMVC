@@ -16,30 +16,41 @@
   <title>Trang chủ</title>
   
 </head>
+<style>
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 <body>
   <?php 
     include '../components/mommom/Header.php';
   ?>
     <div class="main">
-      <?php 
-      include '../components/mommom/slider.php';
-      // include '../components/mommom/Navigation.php';
+      <?php
+        include '../components/mommom/slider.php';
       ?>
-      <div class="container">
-        <div class="product">
-          <h3 class="heading">
-            <i class='bx bx-shopping-bag' ></i>
-            Nhà trọ của bạn
-          </h3>
-          <div class="heading">
-            <div class="col-md-12">
-              <a href="<?php echo $_ENV['URL']; ?>createmotel"><button class="btn btn-primary">Thêm nhà trọ của bạn</button></a>
-            </div>
-          </div>
-            <?php include '../controllers/homepageController.php';
-                $room = new motelController();
-                $room();
-            ?>
+    <?php
+        // include '../controllers/historybillController.php'
+        // $his = new historybillController();
+        // $his();
+        include '../controllers/userpageController.php';
+        $details = new userpageController();
+        $details();
+    ?>
+      </div>
+    </div>
       </div>
     </div>
   <?php 

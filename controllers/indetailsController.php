@@ -73,36 +73,23 @@ class detailsView
               <?php echo nl2br($row['MoTaPhongTro']); ?>
               </p>
             </div>
-            <?php }?>
+            
           <div class="product">
             <h3 class="heading">
               <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 0) { ?>
               <?php } else { ?>
-                  <i class="bx bx-cart-alt"></i>
-                  Gợi ý
+                  <!-- <i class="bx bx-cart-alt"></i> -->
+                  Góc bình luận (<?php echo $row['LuotBinhLuan']; ?>)
                     <?php }?>
                   </h3>
                   <div class="product__container">
-                    <!-- <div class="product__item">
-                      <div class="product__item__img">
-                        <a href="">
-                          <img src="https://akkogear.com.vn/wp-content/uploads/2022/08/ban-phim-co-akko-3068b-plus-black-gold-03.jpg" alt="">
-                        </a>
-                      </div>
-                      <h4 class="product__item__title">
-                        <a href="">
-                          categoryName
-                        </a>
-                      </h4>
-                      <a href="categoryName" class="product__item__action">
-                        <i class='bx bx-category' ></i>
-                        Xem list sản phẩm
-                      </a>
-                    </div> -->
+
+
                   </div>
                 </div>
               </div>
-          </div>
+              <?php }?>
+          </div>                    
 <?php
     }
 }
@@ -116,3 +103,4 @@ class detailsController
         $detailView->render($get);
     }
 }
+?>

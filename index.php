@@ -35,66 +35,6 @@
           $roomController = new roomController();
           $roomController();
         ?>
-        <!-- </div>
-          <div class="product">
-            <h3 class="heading">
-              <i class="bx bx-cart-alt"></i>
-              Sản phẩm được yêu thích
-            </h3>
-            <div class="product__container">
-              <div class="product__item">
-                <div class="product__item__img">
-                  <a href="productDetail.php?productId=<?php echo $result['productId'] ?>">
-                    <img src="https://i1-kinhdoanh.vnecdn.net/2020/08/31/a-tb-phoi-canh-du-an-phong-3868-1598855134.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=3PgwyZtZqJLlpIjcBw7ABw" alt="">
-                  </a>
-                </div>
-                <h4 class="product__item__title">
-                  <a href="productDetail.php?productId=<?php echo $result['productId'] ?>">
-                    productName
-                  </a>
-                </h4>
-                <p class="product__item__price">
-                  <span>$</span>400
-                </p>
-                <p style="padding-top: 1rem; margin-bottom: 1rem">
-                    Số view <span>400</span>
-                </p>
-                <a href="" class="product__item__action">
-                  <i class='bx bx-category' ></i>
-                  Xem chi tiết
-                </a>
-              </div>
-            </div>
-            <ul class="list-page">
-              <li><a href='index.php?page=$i'>1</a></li>
-              <li><a href='index.php?page=$i'>2</a></li>
-              <li><a href='index.php?page=$i'>3</a></li>
-              <li><a href='index.php?page=$i'>4</a></li>
-              <li><a href='index.php?page=$i'>5</a></li>
-              <li><a href='index.php?page=$i'>6</a></li>
-              <li><a href='index.php?page=$i'>7</a></li>
-          </ul>
-            <div class="brands">
-              <div class="heading">
-                <i class='bx bx-check-shield' ></i>
-                Thương hiệu chính hãng
-              </div>
-              <div class="brands__container">
-                <div class="brands__item">
-                  <img src="../assets/images/aurus.png" alt="">
-                </div>
-                <div class="brands__item">
-                  <img src="../assets/images/msi.png" alt="">
-                </div>
-                <div class="brands__item">
-                  <img src="../assets/images/logo.png" alt="">
-                </div>
-                <div class="brands__item">
-                  <img src="../assets/images/rog.png" alt="">
-                </div>
-              </div>
-            </div>
-        </div> -->
       </div>
     </div>
   <?php

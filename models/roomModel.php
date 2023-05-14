@@ -2,6 +2,7 @@
 
 include_once __DIR__ . '/../libs/database.php';
 include_once __DIR__ . '/../models/pictureModel.php';
+
 class roomModel
 {
     public $id;
@@ -19,14 +20,21 @@ class roomModel
 
     public function getAllRooms()
     {
-        $query = 'SELECT phongtro.*, picture.url
+        
+        // $rowCount = $db->query('SELECT count(*) FROM phongtro');
+
+// pass number of records to
+        // $pages->set_total($rowCount); 
+        $query = "SELECT phongtro.*, picture.url, nhatro.DiaChi
               FROM phongtro
+              Left join nhatro on nhatro.MaNhaTro = phongtro.MaNhaTro
+              Left join hopdongthue on hopdongthue.MaPhongTro =phongtro.MaPhongTro
               LEFT JOIN (
               SELECT MaPhongTro, url
               FROM picture
               ORDER BY RAND()
               LIMIT 1 ) picture
-              ON phongtro.MaPhongTro = picture.MaPhongTro';
+              ON phongtro.MaPhongTro = picture.MaPhongTro ";
         $result = $this->db->select($query);
         if (!$result) {
             echo 'Database Error: ' . $this->db->error;
@@ -63,8 +71,9 @@ class roomModel
 
     public function getRoomDebug($id)
     {
-        $query = "SELECT phongtro.*, picture.url
+        $query = "SELECT phongtro.*, picture.url, count(reviews.MaReviews) as LuotBinhLuan
               FROM phongtro
+              left join reviews on reviews.MaPhongTro = phongtro.MaPhongTro 
               LEFT JOIN picture ON phongtro.MaPhongTro = picture.MaPhongTro
               WHERE phongtro.MaPhongTro = {$id}
               ORDER BY RAND()
@@ -88,7 +97,7 @@ class roomModel
         return $result;
     }
 
-    public function addRoom($idMotel, $description, $price, $area, $roomNumber)
+    public function addRoom($idMotel, $description, $price, $area, $roomNumber,)
     {
         $query = "INSERT INTO phongtro (MaNhaTro, MoTaPhongTro, GiaThue, DienTich, SoPhong)
               VALUES({$idMotel}, '{$description}', '{$price}', '{$area}', '{$roomNumber}')";

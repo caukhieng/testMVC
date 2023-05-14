@@ -27,7 +27,15 @@ class contractInfo
             </div>
 
             <div class="form-group">
-              <label for="password" class="form-label">Khách trọ</label>
+              <label for="password" class="form-label">Số tháng thuê</label>
+              <input id="month" name="month" type="number" placeholder="VD:1" value="1" min="1" max="24" class="form-control" oninput="(!validity.rangeOverflow||(value=10)) && (!validity.rangeUnderflow||(value=1)) &&
+                (!validity.stepMismatch||(value=parseInt(this.value)));" required autofocus>
+              <span class="form-message"></span>
+
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="form-label">Số điện thoại</label>
               <input id="sdt" name="sdt" type="text" placeholder="Nhập số điện thoại của bạn" class="form-control" required autofocus>
               <span class="form-message"></span>
             </div>
@@ -80,11 +88,17 @@ class contractViews
             $chutro = $dataRoom['MaChuTro'];
             $khachtro = $_SESSION['user_idNum'];
             $sdt = $_POST['sdt'];
+            $month = $_POST['month'];
             $price = $_POST['price'];
             $checkindate = $_POST['checkin-date'];
             var_dump($khachtro);
             $contractModel = new contractModel();
-            $result = $contractModel->createContract($room, $chutro, $khachtro, $price, $checkindate, $method, $sdt);
+            $res = $contractModel->foundContract($room);
+            if(!$res){
+              // echo "<script>alert('Phòng này đã có người đặt rồi')</script>";
+              return false;
+            }
+            $result = $contractModel->createContract($room, $chutro, $khachtro, $price, $checkindate,$month, $method, $sdt);
             if (!$result) {
                 return false;
             }

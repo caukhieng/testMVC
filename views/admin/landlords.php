@@ -149,8 +149,7 @@
         </p></div>
     </div>
     <div class='chartdiv'>
-        <canvas id="myChart" style="width:100%;max-width:600px;height:600px;margin:10px 50px"></canvas>   
-        <canvas id="Chart" style="width:100%;max-width:600px;margin:10px 50px;"></canvas>      
+   
     </div>
     <!-- <div id="chart-container">
         <canvas id="graph"></canvas>
@@ -160,129 +159,6 @@
     </section>
   
     <script>
-
-        // var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        $(document).ready(function () {
-            showGraph();
-        });
-
-        function showGraph(){
-            // $.post("../../charjs.php",
-            $.post("../charjs.php",
-                function (data){
-                    console.log(data);
-                    
-                    var total = []; 
-                var formStatusVar = [];
-                    for (var i in data) {
-                        total.push(data[i].idMonth);
-                        formStatusVar.push(data[i].total);
-                        
-                    }
-
-                    var options = {
-                        legend: {
-                            display: true
-                        },
-                        scales: {
-                            xAxes: [{
-                                display: true
-                            }],
-                        yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        },
-                        title: {
-                            display: true,
-                            text: "Doanh Thu theo tháng"
-                        }
-                    };
-                    var barColors = ["#79CDCD", "#F4A460","#FFFACD","#EEE0E5","#00BFFF","#B0C4DE","#00FFFF",
-                    "#00FF7F","#00FF00","#7FFF00","#FFFF00","#FF3030","#FF8C00","#FF0000"];
-                    var myChart = {
-                        labels: total,
-                        datasets: [
-                            {
-                                label: 'Doanh thu ',
-                                backgroundColor: barColors,
-                                borderColor: '#46d5f1',
-                                hoverBackgroundColor: '#0ec2b6',
-                                hoverBorderColor: '#42f5ef',
-                                // data: total,
-                                data: formStatusVar,
-                                
-                            }
-                        ]
-                    };
-
-                    var bar = $("#myChart"); 
-                    var barGraph = new Chart(bar, {
-                        type: 'bar',
-                        data: myChart,
-                        options: options,
-                    });
-                });
-
-        //
-        $.post("../charjs.php",
-                function (data){
-                    console.log(data);
-                    
-                    var total = []; 
-                var formStatusVar = [];
-                    for (var i in data) {
-                        total.push(data[i].idMonth);
-                        formStatusVar.push(data[i].total);
-                        
-                    }
-
-                    var options = {
-                        legend: {
-                            display: true
-                        },
-                        scales: {
-                            xAxes: [{
-                                display: true
-                            }],
-                        yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        },
-                        title: {
-                            display: true,
-                            text: "Doanh Thu theo tháng"
-                        }
-                    };
-                    var barColors = ["#79CDCD", "#F4A460","#FFFACD","#EEE0E5","#00BFFF","#B0C4DE","#00FFFF",
-                    "#00FF7F","#00FF00","#7FFF00","#FFFF00","#FF3030","#FF8C00","#FF0000"];
-                    var myChart = {
-                        labels: total,
-                        datasets: [
-                            {
-                                label: 'Doanh thu ',
-                                backgroundColor: barColors,
-                                borderColor: '#46d5f1',
-                                hoverBackgroundColor: '#0ec2b6',
-                                hoverBorderColor: '#42f5ef',
-                                // data: total,
-                                data: formStatusVar,
-                                
-                            }
-                        ]
-                    };
-
-                    var bar = $("#Chart"); 
-                    var barGraph = new Chart(bar, {
-                        type: 'pie',
-                        data: myChart,
-                        options: options,
-                    });
-                });
-        }
 
     let sidebar = document.querySelector(".sidebar");
     let closeBtn = document.querySelector("#btn");

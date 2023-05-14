@@ -48,8 +48,8 @@ use Dotenv\Dotenv;
           if ($result->num_rows > 0) {
               return $result;
           }
-          echo 'Database Error: ' . $this->link->error . '<br>';
-          echo 'SQL Query: ' . $query . '<br>';
+        //   echo 'Database Error: ' . $this->link->error . '<br>';
+        //   echo 'SQL Query: ' . $query . '<br>';
 
           return false;
       }
@@ -60,8 +60,8 @@ use Dotenv\Dotenv;
           if ($insert_row) {
               return $insert_row;
           }
-          echo 'Database Error: ' . $this->link->error . '<br>';
-          echo 'SQL Query: ' . $query . '<br>';
+        //   echo 'Database Error: ' . $this->link->error . '<br>';
+        //   echo 'SQL Query: ' . $query . '<br>';
 
           return false;
       }
